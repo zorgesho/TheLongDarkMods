@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 
 namespace Common
@@ -24,5 +25,19 @@ namespace Common
 	static partial class StringExtensions
 	{
 		public static bool isNullOrEmpty(this string s) => string.IsNullOrEmpty(s);
+
+		static string formatFileName(string filename)
+		{
+			return filename.isNullOrEmpty()? filename: Paths.makeRootPath(Paths.ensureExtension(filename, "txt"));
+		}
+
+		public static void saveToFile(this string s, string localPath)
+		{
+			string targetPath = formatFileName(localPath);
+			Paths.ensurePath(targetPath);
+
+			try { File.WriteAllText(targetPath, s); }
+			catch (Exception e) { Log.msg(e); }
+		}
 	}
 }

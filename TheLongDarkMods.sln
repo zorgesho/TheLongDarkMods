@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMod", "TestMod\TestMod.csproj", "{D11C9E7D-0B01-4A6D-9DF3-00C03B37731F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "prototypes", "prototypes", "{A1BC4824-B6EA-4B47-BBAA-3B6E9291DAE9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{F41B6151-2C73-4B87-A09A-C51580B05D41}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		post-build.bat = post-build.bat
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		dev|Any CPU = dev|Any CPU
+		publish|Any CPU = publish|Any CPU
+		testbuild|Any CPU = testbuild|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D11C9E7D-0B01-4A6D-9DF3-00C03B37731F}.dev|Any CPU.ActiveCfg = dev|Any CPU
+		{D11C9E7D-0B01-4A6D-9DF3-00C03B37731F}.dev|Any CPU.Build.0 = dev|Any CPU
+		{D11C9E7D-0B01-4A6D-9DF3-00C03B37731F}.publish|Any CPU.ActiveCfg = publish|Any CPU
+		{D11C9E7D-0B01-4A6D-9DF3-00C03B37731F}.publish|Any CPU.Build.0 = publish|Any CPU
+		{D11C9E7D-0B01-4A6D-9DF3-00C03B37731F}.testbuild|Any CPU.ActiveCfg = testbuild|Any CPU
+		{D11C9E7D-0B01-4A6D-9DF3-00C03B37731F}.testbuild|Any CPU.Build.0 = testbuild|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D11C9E7D-0B01-4A6D-9DF3-00C03B37731F} = {A1BC4824-B6EA-4B47-BBAA-3B6E9291DAE9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C14B4D75-5F94-45C7-AA7F-9C13CC209522}
+	EndGlobalSection
+EndGlobal

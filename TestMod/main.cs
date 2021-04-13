@@ -1,10 +1,10 @@
-﻿using MelonLoader;
+﻿using Common;
 
 namespace TestMod
 {
-	public class Main: MelonMod
+	public class Main: Mod
 	{
-		public override void OnApplicationStart()
+		protected override void init()
 		{
 		}
 	}

@@ -14,6 +14,8 @@ namespace Common
 
 	static class GameUtils
 	{
+		public static PlayerManager PlayerManager => GameManager.GetPlayerManagerComponent();
+
 		public static bool isMainMenu() => GameManager.m_ActiveScene == "MainMenu";
 	}
 }

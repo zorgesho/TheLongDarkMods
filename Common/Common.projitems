@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)debug\Log.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)debug\Misc.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)debug\Profiler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HarmonyHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Misc.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MiscInGame.cs" />

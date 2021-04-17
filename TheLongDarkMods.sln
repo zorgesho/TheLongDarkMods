@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{F41B6151-2
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		post-build.bat = post-build.bat
+		readme.md = readme.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{65F6F092-6619-4064-A6D1-51F137C57E41}"

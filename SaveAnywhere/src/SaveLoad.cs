@@ -56,11 +56,7 @@ namespace SaveAnywhere
 			var mainmenu = InterfaceManager.m_Panel_MainMenu;
 			var slots = SaveGameSlots.GetSaveSlotTypeFromName(slot) == SaveSlotType.CHALLENGE? mainmenu.m_ChallengeSaveSlots: mainmenu.m_SandboxSlots;
 
-			for (int i = 0; i < slots.Count; i++)
-				if (slots[i].m_SaveSlotName == slot)
-					return i;
-
-			return -1;
+			return slots.findIndex(slotInfo => slotInfo.m_SaveSlotName == slot);
 		}
 
 		static string createNewSlot(string displayName, bool setCurrent = true)

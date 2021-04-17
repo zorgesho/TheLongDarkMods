@@ -144,10 +144,9 @@ namespace SaveAnywhere
 		{
 			int targetIndex = 0;
 			var menu = __instance.getBasicMenu();
-			var quickslot = SaveLoad.getQuicksaveSlot(__instance.getSlotType());
 
-			var predicate = new Func<BasicMenu.BasicMenuItemModel, bool>(item => item.m_Id == quickslot);
-			int qsIndex = menu.m_ItemModelList.FindIndex(predicate);
+			var quickslot = SaveLoad.getQuicksaveSlot(__instance.getSlotType());
+			int qsIndex = menu.m_ItemModelList.findIndex(item => item.m_Id == quickslot);
 
 			if (qsIndex != -1)
 			{

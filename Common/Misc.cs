@@ -15,6 +15,11 @@ namespace Common
 			while (enumerator.MoveNext())
 				action(enumerator.Current);
 		}
+
+		public static int findIndex<T>(this Il2CppSystem.Collections.Generic.List<T> list, Predicate<T> predicate)
+		{
+			return list.FindIndex(new Func<T, bool>(predicate));
+		}
 	}
 
 	static class ArrayExtensions

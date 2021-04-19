@@ -152,7 +152,7 @@ namespace SaveAnywhere
 				targetIndex++;
 			}
 
-			var itemsToMove = new List<BasicMenu.BasicMenuItemModel>();
+			List<BasicMenu.BasicMenuItemModel> itemsToMove = new();
 
 			for (int i = menu.m_ItemModelList.Count - 1; i >= 0; i--)
 			{
@@ -183,7 +183,7 @@ namespace SaveAnywhere
 			if (GameManager.IsStoryMode())
 				return;
 
-			var action = new Action(() =>
+			Action action = new(() =>
 			{
 				backToPauseMenu = true;
 				InterfaceManager.m_Panel_PauseMenu.Enable(false);
@@ -196,7 +196,7 @@ namespace SaveAnywhere
 					InterfaceManager.m_Panel_Challenges.OnClickLoad();
 			});
 
-			var defaultColor = new Color(0f, 0f, 0f, 0f);
+			Color defaultColor = new(0f, 0f, 0f, 0f);
 
 			__instance.m_BasicMenu.AddItem("LoadGame", 0, 0, Localization.Get("GAMEPLAY_LoadGame"), Localization.Get("GAMEPLAY_DescriptionLoadGame"), null, action, defaultColor, defaultColor);
 			__instance.m_BasicMenu.moveItemTo(2);

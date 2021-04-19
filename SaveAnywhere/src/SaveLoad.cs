@@ -138,7 +138,7 @@ namespace SaveAnywhere
 			if (slotIndex == -1)
 				return;
 
-			var action = new Action(() =>
+			Action action = new(() =>
 			{
 				if (Main.gameType == SaveSlotType.CHALLENGE)
 					InterfaceManager.m_Panel_MainMenu.OnLoadChallengeMode(slotIndex);
@@ -183,7 +183,7 @@ namespace SaveAnywhere
 				if (!Main.config.removeCustomSavesWithOriginal)
 					return;
 																																		$"Trying to delete linked slots".logDbg();
-				var linksToRemove = new List<string>();
+				List<string> linksToRemove = new();
 
 				foreach (var link in slotsConfig.originalSlots)
 				{

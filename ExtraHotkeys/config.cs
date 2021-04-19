@@ -12,6 +12,6 @@ namespace ExtraHotkeys
 				Actions.actions.ForEach(action => binds[action.id] = KeyCode.None);
 		}
 
-		public readonly Dictionary<string, KeyCode> binds = new Dictionary<string, KeyCode>();
+		public readonly Dictionary<string, KeyCode> binds = new();
 	}
 }

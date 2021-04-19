@@ -28,7 +28,7 @@ namespace ExtraHotkeys
 				GameAudioManager.PlayGUIError();
 		}
 
-		public static readonly List<InventoryAction> actions = new List<InventoryAction>()
+		public static readonly List<InventoryAction> actions = new()
 		{
 			// weapons
 			new InventoryAction("Revolver",	"Equip Revolver",			() => use(inv?.GetBestRevolver())),

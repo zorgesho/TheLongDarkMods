@@ -18,8 +18,8 @@ namespace SaveAnywhere
 
 		class SaveSlotsConfig: Config
 		{
-			public Dictionary<SaveSlotType, string> quicksaveSlot = new Dictionary<SaveSlotType, string>();
-			public Dictionary<string, string> originalSlots = new Dictionary<string, string>(); // key - custom slot, value - original slot
+			public Dictionary<SaveSlotType, string> quicksaveSlot = new();
+			public Dictionary<string, string> originalSlots = new(); // key - custom slot, value - original slot
 		}
 		static readonly SaveSlotsConfig slotsConfig = Config.tryLoad<SaveSlotsConfig>(PersistentDataPath.m_Path + "\\save-slots", Config.LoadOptions.ForcedLoad);
 

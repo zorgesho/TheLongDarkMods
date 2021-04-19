@@ -10,7 +10,7 @@ namespace Common
 	{
 		public static Profiler profiler(string message = null) =>
 #if DEBUG
-			new Profiler(message);
+			new(message);
 #else
 			null;
 #endif

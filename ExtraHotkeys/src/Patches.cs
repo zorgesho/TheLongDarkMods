@@ -52,7 +52,7 @@ namespace ExtraHotkeys
 			if (bindingNow)
 				return false;
 
-			if (!(buttonPressed.GetComponent<KeyBind>() is KeyBind keyBind))
+			if (buttonPressed.GetComponent<KeyBind>() is not KeyBind keyBind)
 				return true;
 
 			GameAudioManager.PlayGUIButtonClick();

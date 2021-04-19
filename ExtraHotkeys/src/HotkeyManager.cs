@@ -29,9 +29,9 @@ namespace ExtraHotkeys
 		static void forEachKeyBind(Action<KeyBind> action) => bindsParent.forEachComponentInChildren(action);
 
 		static readonly float[] columnPos = { -1.49f, -1.54f, 0.83f }; // horizontal positions for hotkeys columns
-		static readonly List<float> bindPositions = new List<float>();
+		static readonly List<float> bindPositions = new();
 
-		static readonly List<Bind> binds = new List<Bind>();
+		static readonly List<Bind> binds = new();
 
 		public static void init()
 		{

@@ -17,7 +17,7 @@ namespace SaveAnywhere
 
 		static void dumpSaveSlot(string slotName)
 		{
-			if (!(SaveGameSlots.GetSaveSlotFromName(slotName) is SlotData slotData))
+			if (SaveGameSlots.GetSaveSlotFromName(slotName) is not SlotData slotData)
 				return;
 
 			foreach (var key in slotData.m_Dict.Keys)

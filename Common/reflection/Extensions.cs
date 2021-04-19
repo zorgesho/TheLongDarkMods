@@ -59,7 +59,7 @@ namespace Common.Reflection
 			return memberInfo.Name;
 		}
 
-		public static MethodWrapper wrap(this MethodInfo method) => new MethodWrapper(method);
+		public static MethodWrapper wrap(this MethodInfo method) => new(method);
 
 		public static A getAttr<A>(this MemberInfo memberInfo) where A: Attribute => Attribute.GetCustomAttribute(memberInfo, typeof(A)) as A;
 		public static A[] getAttrs<A>(this MemberInfo memberInfo) where A: Attribute => Attribute.GetCustomAttributes(memberInfo, typeof(A)) as A[];

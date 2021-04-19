@@ -32,6 +32,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DayNightSpeed", "DayNightSp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtraHotkeys", "ExtraHotkeys\ExtraHotkeys.csproj", "{52FD664F-910A-4FE2-A172-0D108D8BBD32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceFromInventory", "PlaceFromInventory\PlaceFromInventory.csproj", "{6B51C924-AE04-4429-A880-08C91E6FD975}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Common\Common.Config\Common.Config.projitems*{06a3f033-1506-4b0f-9e4d-51547ae89b18}*SharedItemsImports = 4
@@ -39,6 +41,8 @@ Global
 		Common\Common.Config\Common.Config.projitems*{52fd664f-910a-4fe2-a172-0d108d8bbd32}*SharedItemsImports = 4
 		Common\Common.projitems*{52fd664f-910a-4fe2-a172-0d108d8bbd32}*SharedItemsImports = 4
 		Common\Common.projitems*{598e50ee-9bae-46a8-9c65-7f276286f391}*SharedItemsImports = 13
+		Common\Common.Config\Common.Config.projitems*{6b51c924-ae04-4429-a880-08c91e6fd975}*SharedItemsImports = 4
+		Common\Common.projitems*{6b51c924-ae04-4429-a880-08c91e6fd975}*SharedItemsImports = 4
 		Common\Common.projitems*{764d4c12-f80e-4173-9da5-a1d694a3fe13}*SharedItemsImports = 4
 		Common\Common.Config\Common.Config.projitems*{b39de674-737e-4f48-a1f7-a26b7e3d501f}*SharedItemsImports = 13
 		Common\Common.projitems*{d11c9e7d-0b01-4a6d-9df3-00c03b37731f}*SharedItemsImports = 4
@@ -89,6 +93,12 @@ Global
 		{52FD664F-910A-4FE2-A172-0D108D8BBD32}.publish|Any CPU.Build.0 = publish|Any CPU
 		{52FD664F-910A-4FE2-A172-0D108D8BBD32}.testbuild|Any CPU.ActiveCfg = testbuild|Any CPU
 		{52FD664F-910A-4FE2-A172-0D108D8BBD32}.testbuild|Any CPU.Build.0 = testbuild|Any CPU
+		{6B51C924-AE04-4429-A880-08C91E6FD975}.dev|Any CPU.ActiveCfg = dev|Any CPU
+		{6B51C924-AE04-4429-A880-08C91E6FD975}.dev|Any CPU.Build.0 = dev|Any CPU
+		{6B51C924-AE04-4429-A880-08C91E6FD975}.publish|Any CPU.ActiveCfg = publish|Any CPU
+		{6B51C924-AE04-4429-A880-08C91E6FD975}.publish|Any CPU.Build.0 = publish|Any CPU
+		{6B51C924-AE04-4429-A880-08C91E6FD975}.testbuild|Any CPU.ActiveCfg = testbuild|Any CPU
+		{6B51C924-AE04-4429-A880-08C91E6FD975}.testbuild|Any CPU.Build.0 = testbuild|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

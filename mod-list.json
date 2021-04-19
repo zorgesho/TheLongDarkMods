@@ -3,6 +3,26 @@
   "authorURL": "https://github.com/zorgesho",
   "mods": [
     {
+      "name": "ExtraHotkeys",
+      "author": "zorgesho",
+      "authorURL": "https://github.com/zorgesho",
+      "version": "1.0.0",
+      "updated": "2021-04-19",
+      "description": "This mod adds additional hotkeys for equipping gear items",
+      "modURL": "https://github.com/zorgesho/TheLongDarkMods/tree/master/ExtraHotkeys",
+      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/EH-v1.0.0/ExtraHotkeys.zip",
+      "testedon": {
+        "tldversion": "1.93",
+        "mlversion": "0.2.7.4"
+      },
+      "dependencies": [],
+      "status": {
+        "working": true,
+        "issues": "",
+        "notes": ""
+      }
+    },
+    {
       "name": "SaveAnywhere",
       "author": "zorgesho",
       "authorURL": "https://github.com/zorgesho",

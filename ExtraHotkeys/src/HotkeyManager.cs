@@ -7,8 +7,6 @@ using Common;
 
 namespace ExtraHotkeys
 {
-	using Object = UnityEngine.Object;
-
 	static class HotkeyManager
 	{
 		class Bind
@@ -86,9 +84,7 @@ namespace ExtraHotkeys
 			var bindPrefab = leftColumn.getChild("Button_Rebinding");
 
 			// add new column to the key binding panel
-			bindsParent = new GameObject("ExtraKeys");
-			bindsParent.setParent(panel);
-			bindsParent.transform.position = new Vector3(columnPos[2], leftColumn.transform.position.y, 0f);
+			bindsParent = panel.createChild("ExtraKeys", pos: new Vector3(columnPos[2], leftColumn.transform.position.y, 0f));
 
 			// copying keys positions (for some reason they have different spacing)
 			var keys = leftColumn.transform;
@@ -104,9 +100,7 @@ namespace ExtraHotkeys
 			{
 				var action = Actions.actions[i];
 
-				var newkey = Object.Instantiate(bindPrefab, bindsParent.transform);
-				newkey.transform.localPosition = new Vector3(0f, bindPositions[i], 0f);
-
+				var newkey = bindsParent.createChild(bindPrefab, localPos: new Vector3(0f, bindPositions[i], 0f));
 				newkey.destroyComponent<KeyRebindingButton>();
 				newkey.AddComponent<KeyBind>().init(action.id, action.name);
 			}

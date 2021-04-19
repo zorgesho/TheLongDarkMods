@@ -88,9 +88,7 @@ namespace SaveAnywhere
 			var details = __instance.getDetails().m_Details;
 			var prefab = details.getChild("Texts/Date");
 
-			var originalSlot = Object.Instantiate(prefab, details.getChild("Texts").transform);
-			originalSlot.transform.position = new Vector3(460f, prefab.transform.position.y, 0f);
-			originalSlot.name = "OriginalSlot";
+			var originalSlot = details.getChild("Texts").createChild(prefab, "OriginalSlot", pos: new Vector3(460f, prefab.transform.position.y, 0f));
 			originalSlot.getChild("DateValue").name = "SlotValue";
 		}
 
@@ -168,9 +166,7 @@ namespace SaveAnywhere
 			}
 
 			// moving custom saves up
-			foreach (var item in itemsToMove)
-				menu.m_ItemModelList.Insert(targetIndex, item);
-
+			itemsToMove.ForEach(item => menu.m_ItemModelList.Insert(targetIndex, item));
 			targetIndex += itemsToMove.Count;
 
 			if (targetIndex != 0)

@@ -11,8 +11,31 @@ namespace Common
 	static class ObjectAndComponentExtensions
 	{
 		public static void setParent(this GameObject go, GameObject parent) => go.transform.SetParent(parent.transform, false);
+		public static GameObject getParent(this GameObject go) => go.transform.parent?.gameObject;
 
 		public static GameObject getChild(this GameObject go, string name) => go.transform.Find(name)?.gameObject;
+
+		public static GameObject createChild(this GameObject go, string name, Vector3? pos = null)
+		{
+			var child = new GameObject(name);
+			child.setParent(go);
+
+			if (pos != null)
+				child.transform.position = (Vector3)pos;
+
+			return child;
+		}
+
+		public static GameObject createChild(this GameObject go, GameObject prefab, string name = null, Vector3? pos = null, Vector3? localPos = null)
+		{
+			var child = Object.Instantiate(prefab, go.transform);
+
+			if (name != null)		child.name = name;
+			if (pos != null)		child.transform.position = (Vector3)pos;
+			if (localPos != null)	child.transform.localPosition = (Vector3)localPos;
+
+			return child;
+		}
 
 		// for some reason, GetComponentsInChildren<T>() is not working well
 		public static void forEachComponentInChildren<T>(this GameObject go, Action<T> action) where T: Il2CppObjectBase =>

@@ -1,6 +1,4 @@
 ﻿using Harmony;
-using UnityEngine;
-
 using Common;
 
 namespace DayNightSpeed
@@ -27,8 +25,7 @@ namespace DayNightSpeed
 				if (!_label)
 				{
 					var labelPrefab = InterfaceManager.m_Panel_HUD.m_Label_Message.gameObject;
-
-					var labelGO = Object.Instantiate(labelPrefab, labelPrefab.transform.parent);
+					var labelGO = labelPrefab.getParent().createChild(labelPrefab);
 					labelGO.destroyComponent<UIAnchor>();
 
 					_label = labelGO.GetComponent<UILabel>();

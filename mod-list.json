@@ -23,6 +23,26 @@
       }
     },
     {
+      "name": "PlaceFromInventory",
+      "author": "zorgesho",
+      "authorURL": "https://github.com/zorgesho",
+      "version": "1.0.0",
+      "updated": "2021-04-20",
+      "description": "This mod allows to place items right from the inventory screen with a right mouse click. Also, it places any stackable items as one item (as stack).",
+      "modURL": "https://github.com/zorgesho/TheLongDarkMods/tree/master/PlaceFromInventory",
+      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/PFI-v1.0.0/PlaceFromInventory.zip",
+      "testedon": {
+        "tldversion": "1.93",
+        "mlversion": "0.2.7.4"
+      },
+      "dependencies": [],
+      "status": {
+        "working": true,
+        "issues": "",
+        "notes": ""
+      }
+    },
+    {
       "name": "SaveAnywhere",
       "author": "zorgesho",
       "authorURL": "https://github.com/zorgesho",

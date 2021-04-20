@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtraHotkeys", "ExtraHotkey
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceFromInventory", "PlaceFromInventory\PlaceFromInventory.csproj", "{6B51C924-AE04-4429-A880-08C91E6FD975}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovableContainers", "MovableContainers\MovableContainers.csproj", "{E388F144-1F49-42EA-BEAC-AAB65445D3C4}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Common\Common.Config\Common.Config.projitems*{06a3f033-1506-4b0f-9e4d-51547ae89b18}*SharedItemsImports = 4
@@ -48,6 +50,8 @@ Global
 		Common\Common.projitems*{d11c9e7d-0b01-4a6d-9df3-00c03b37731f}*SharedItemsImports = 4
 		Common\Common.Config\Common.Config.projitems*{e0378030-b5f7-4b1d-9e8e-81be5d80ecc3}*SharedItemsImports = 4
 		Common\Common.projitems*{e0378030-b5f7-4b1d-9e8e-81be5d80ecc3}*SharedItemsImports = 4
+		Common\Common.Config\Common.Config.projitems*{e388f144-1f49-42ea-beac-aab65445d3c4}*SharedItemsImports = 4
+		Common\Common.projitems*{e388f144-1f49-42ea-beac-aab65445d3c4}*SharedItemsImports = 4
 		Common\Common.Config\Common.Config.projitems*{f5065ccd-fcdb-4dea-a765-0a95ab6d84df}*SharedItemsImports = 4
 		Common\Common.projitems*{f5065ccd-fcdb-4dea-a765-0a95ab6d84df}*SharedItemsImports = 4
 	EndGlobalSection
@@ -99,6 +103,12 @@ Global
 		{6B51C924-AE04-4429-A880-08C91E6FD975}.publish|Any CPU.Build.0 = publish|Any CPU
 		{6B51C924-AE04-4429-A880-08C91E6FD975}.testbuild|Any CPU.ActiveCfg = testbuild|Any CPU
 		{6B51C924-AE04-4429-A880-08C91E6FD975}.testbuild|Any CPU.Build.0 = testbuild|Any CPU
+		{E388F144-1F49-42EA-BEAC-AAB65445D3C4}.dev|Any CPU.ActiveCfg = dev|Any CPU
+		{E388F144-1F49-42EA-BEAC-AAB65445D3C4}.dev|Any CPU.Build.0 = dev|Any CPU
+		{E388F144-1F49-42EA-BEAC-AAB65445D3C4}.publish|Any CPU.ActiveCfg = publish|Any CPU
+		{E388F144-1F49-42EA-BEAC-AAB65445D3C4}.publish|Any CPU.Build.0 = publish|Any CPU
+		{E388F144-1F49-42EA-BEAC-AAB65445D3C4}.testbuild|Any CPU.ActiveCfg = testbuild|Any CPU
+		{E388F144-1F49-42EA-BEAC-AAB65445D3C4}.testbuild|Any CPU.Build.0 = testbuild|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

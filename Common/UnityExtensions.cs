@@ -26,13 +26,14 @@ namespace Common
 			return child;
 		}
 
-		public static GameObject createChild(this GameObject go, GameObject prefab, string name = null, Vector3? pos = null, Vector3? localPos = null)
+		public static GameObject createChild(this GameObject go, GameObject prefab, string name = null, Vector3? pos = null, Vector3? localPos = null, Vector3? localScale = null)
 		{
 			var child = Object.Instantiate(prefab, go.transform);
 
 			if (name != null)		child.name = name;
 			if (pos != null)		child.transform.position = (Vector3)pos;
 			if (localPos != null)	child.transform.localPosition = (Vector3)localPos;
+			if (localScale != null)	child.transform.localScale = (Vector3)localScale;
 
 			return child;
 		}
@@ -51,5 +52,12 @@ namespace Common
 
 		public static void destroyComponent<T>(this GameObject go, bool immediate = true) where T: Component =>
 			go.GetComponent<T>()?._destroy(immediate);
+
+		public static string baseName(this GameObject go) => go.name.Replace("(Clone)", "");
+	}
+
+	static class StructsExtensions
+	{
+		public static string toStringRGB(this Color color) => ColorUtility.ToHtmlStringRGB(color);
 	}
 }

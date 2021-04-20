@@ -4,7 +4,11 @@ namespace Common
 {
 	static partial class StringExtensions
 	{
-		public static string onScreen(this string str) { HUDMessage.AddMessage(str, false); return str; }
+		public static string onScreen(this string str, bool highPriority = false)
+		{
+			HUDMessage.AddMessage(str, highPriority);
+			return str;
+		}
 	}
 
 	static class InputHelper

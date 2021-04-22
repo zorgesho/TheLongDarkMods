@@ -18,6 +18,7 @@ namespace MiscTweaks
 		}
 	}
 
+
 	// weightless quest items
 	[HarmonyPatch(typeof(GearItem), "GetItemWeightKG")]
 	static class GearItem_GetItemWeightKG_Patch
@@ -29,6 +30,7 @@ namespace MiscTweaks
 		}
 	}
 
+
 	// disable voice-overs
 	[HarmonyPatch(typeof(PlayerVoice), "CanPlayPlayerVoiceEvents")]
 	static class PlayerVoice_CanPlayPlayerVoiceEvents_Patch
@@ -37,20 +39,45 @@ namespace MiscTweaks
 		static bool Prefix(ref bool __result) => __result = false;
 	}
 
+
 	[PatchClass]
 	static class GunPatches
 	{
-		// for cancelling reloading in the process
+		// cancel reloading in the process
+		// don't drop revolver casings
 		[HarmonyPrefix, HarmonyPatch(typeof(vp_FPSPlayer), "Reload")]
 		static void FPSPlayer_Reload_Prefix(vp_FPSPlayer __instance)
 		{
-			if (__instance.FPSCamera.CurrentWeapon.ReloadInProgress())
-				__instance.FPSCamera.CurrentWeapon.m_BulletsToReload = 0;
+			var weaponFPS = __instance.FPSCamera.CurrentWeapon;
+			var gun = weaponFPS.m_GearItem.m_GunItem;
+
+			if (weaponFPS.ReloadInProgress())
+				weaponFPS.m_BulletsToReload = 0;
+
+			if (gun.m_GunType == GunType.Revolver && Main.config.addRevolverCasingsToInventory)
+			{
+				GameUtils.PlayerManager.InstantiateItemInPlayerInventory("GEAR_RevolverAmmoCasing", gun.m_SpentCasingsInClip);
+				gun.ClearSpentCasings();
+			}
 		}
 
-		[HarmonyPatch(typeof(GunItem), "Start")]
-		static void GunItem_Start_Prefix(GunItem __instance) => __instance.m_FireDelayAfterReload = __instance.m_FireDelayOnAim = 0f;
+		[HarmonyPostfix, HarmonyPatch(typeof(GunItem), "Start")]
+		static void GunItem_Start_Postfix(GunItem __instance)
+		{
+			__instance.m_FireDelayAfterReload = __instance.m_FireDelayOnAim = 0f;
+
+			if (__instance.m_GunType == GunType.Revolver)
+				__instance.m_FiringRateSeconds = Main.config.revolverFiringRate;
+		}
+
+		[HarmonyPostfix, HarmonyPatch(typeof(GunItem), "ZoomStart")]
+		static void GunItem_ZoomStart_Postfix(GunItem __instance)
+		{
+			if (__instance.m_GunType == GunType.Revolver && Main.config.allowWalkWhileAimingRevolver)
+				GameUtils.PlayerManager.SetControlMode(__instance.m_RestoreControlMode);
+		}
 	}
+
 
 	// click to matches item in the inventory to set its condition to 100% (so they all can be stacked)
 	[HarmonyPatch(typeof(ItemDescriptionPage), "CanExamine")]
@@ -64,6 +91,7 @@ namespace MiscTweaks
 				gi.m_CurrentHP = gi.m_MaxHP;
 		}
 	}
+
 
 	// unlimited sleep with Control pressed
 	[PatchClass]

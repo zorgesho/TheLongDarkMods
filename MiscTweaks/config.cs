@@ -13,5 +13,9 @@ namespace MiscTweaks
 		public readonly bool disableVoiceOver = true;
 		public readonly bool cleanSomeLocations = true; // list of locations is in the LocationCleaner.cs
 		public readonly bool allowUnlimitedSleep = true;
+
+		public readonly bool allowWalkWhileAimingRevolver = true;
+		public readonly bool addRevolverCasingsToInventory = true;
+		public readonly float revolverFiringRate = 0.25f; // vanilla 0.5f
 	}
 }

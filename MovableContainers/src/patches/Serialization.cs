@@ -85,7 +85,7 @@ namespace MovableContainers
 			{
 				var go = __instance.gameObject;
 
-				if (info.hiddenGameObjects.Any(hiddenGO => hiddenGO == go)) // can't use Contains here for some reason
+				if (info?.hiddenGameObjects.Any(hiddenGO => hiddenGO == go) == true) // can't use Contains here for some reason
 				{																																$"Container.OnEnable: hiding {go.GetComponent<ObjectGuid>()?.m_Guid} again".logDbg();
 					go.SetActive(false); // hey you, stay hidden!
 				}

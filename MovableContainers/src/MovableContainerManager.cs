@@ -16,11 +16,7 @@ namespace MovableContainers
 		// serializable info about changed containers in the current scene
 		class MovedContainersInfo
 		{
-			public class ContainerInfo
-			{
-				public string guid { get; init; }
-				public string prefabName { get; init; }
-			}
+			public record ContainerInfo(string guid, string prefabName);
 
 			public readonly HashSet<string> movedContainers = new();
 			public readonly HashSet<string> hiddenContainers = new();
@@ -31,36 +27,24 @@ namespace MovableContainers
 		}
 		static MovedContainersInfo info = null;
 
-		public class ContainerProps
-		{
-			public readonly string type;
-			public readonly string displayName;
-			public readonly float weight;
-
-			public ContainerProps(string type, string displayName, float weight)
-			{
-				this.type = type;
-				this.displayName = displayName;
-				this.weight = weight;
-			}
-		}
+		public record ContainerProps(string type, string displayName, float weight);
 
 		static readonly List<ContainerProps> allowedTypes = new()
 		{
-			new ContainerProps("CONTAINER_BackPack", "GAMEPLAY_BackPack", 1f),
-			new ContainerProps("CONTAINER_PlasticBox", "GAMEPLAY_PlasticContainer", 1f),
-			new ContainerProps("CONTAINER_BriefcaseA", "GAMEPLAY_Briefcase", 1.5f),
-			new ContainerProps("CONTAINER_LockBoxB", "GAMEPLAY_LockBox", 1.5f),
-			new ContainerProps("CONTAINER_MetalBox", "GAMEPLAY_MetalContainer", 2f),
-			new ContainerProps("CONTAINER_TrashCanister", "GAMEPLAY_TrashCan", 2.5f),
-			new ContainerProps("CONTAINER_Cooler", "GAMEPLAY_Cooler", 5f),
-			new ContainerProps("CONTAINER_SteamerTrunk", "GAMEPLAY_SteamerTrunk", 15f),
-			new ContainerProps("CONTAINER_FirewoodBin", "GAMEPLAY_FireWoodBin", 30f),
-			new ContainerProps("CONTAINER_ForestryCrate", "GAMEPLAY_SupplyBin", 30f),
+			new ("CONTAINER_BackPack", "GAMEPLAY_BackPack", 1f),
+			new ("CONTAINER_PlasticBox", "GAMEPLAY_PlasticContainer", 1f),
+			new ("CONTAINER_BriefcaseA", "GAMEPLAY_Briefcase", 1.5f),
+			new ("CONTAINER_LockBoxB", "GAMEPLAY_LockBox", 1.5f),
+			new ("CONTAINER_MetalBox", "GAMEPLAY_MetalContainer", 2f),
+			new ("CONTAINER_TrashCanister", "GAMEPLAY_TrashCan", 2.5f),
+			new ("CONTAINER_Cooler", "GAMEPLAY_Cooler", 5f),
+			new ("CONTAINER_SteamerTrunk", "GAMEPLAY_SteamerTrunk", 15f),
+			new ("CONTAINER_FirewoodBin", "GAMEPLAY_FireWoodBin", 30f),
+			new ("CONTAINER_ForestryCrate", "GAMEPLAY_SupplyBin", 30f),
 
 			// doesn't work properly:
-			//new ContainerProps("CONTAINER_FirstAidKitB", "GAMEPLAY_FirstAidKit", 0.5f),
-			//new ContainerProps("CONTAINER_CacheStoreCommon", "STORY_HiddenCacheContainer", 0.5f),
+			//new ("CONTAINER_FirstAidKitB", "GAMEPLAY_FirstAidKit", 0.5f),
+			//new ("CONTAINER_CacheStoreCommon", "STORY_HiddenCacheContainer", 0.5f),
 		};
 
 		public static string pickedContainerType { get; private set; } = null;
@@ -114,7 +98,7 @@ namespace MovableContainers
 			else
 			{
 				obj = createContainerInternal(prefabName);
-				info.newContainers.Add(new() { prefabName = prefabName, guid = obj.GetComponent<ObjectGuid>().m_Guid });
+				info.newContainers.Add(new (prefabName, obj.GetComponent<ObjectGuid>().m_Guid));
 			}
 
 			lastCreatedContainer = obj;

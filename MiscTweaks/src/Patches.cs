@@ -1,5 +1,8 @@
-﻿using Harmony;
+﻿using System.Text;
+
+using Harmony;
 using UnityEngine;
+using UnhollowerBaseLib;
 
 using Common;
 
@@ -132,5 +135,74 @@ namespace MiscTweaks
 
 		[HarmonyPostfix, HarmonyPatch(typeof(Rest), "EndSleeping")]
 		static void Rest_EndSleeping_Postfix() => unlimitedSleep = false; // just in case
+	}
+
+
+	// shows items for empty containers which could be instantiated there
+	[PatchClass]
+	static class MissedItems
+	{
+		static readonly StringBuilder sb = new();
+
+		static Container lastContainer;
+		static Il2CppArrayBase<string> gearToInstantiate;
+
+		static bool prepare() => Main.config.dbgShowMissedItemsForEmptyContainers;
+
+		static void setContainer(Container container)
+		{
+			lastContainer = container;
+			gearToInstantiate = container?.m_GearToInstantiate.ToArray();
+		}
+
+		[HarmonyPrefix, HarmonyPatch(typeof(Container), "InstantiateContents")]
+		static void Container_InstantiateContents_Prefix(Container __instance)
+		{
+			if (__instance.m_GearToInstantiate.Count != 0)
+				setContainer(__instance);
+		}
+
+		[HarmonyPostfix, HarmonyPatch(typeof(Container), "OnContainerSearchComplete")]
+		static void Container_OnContainerSearchComplete_Postfix(Container __instance)
+		{
+			if (__instance != lastContainer)
+				return;
+
+			if (__instance.m_Items.Count < gearToInstantiate.Length)
+			{
+				sb.Clear();
+
+				gearToInstantiate.forEach(item => sb.Append(item + " "));
+
+				sb.ToString().onScreen(true);
+			}
+
+			setContainer(null);
+		}
+	}
+
+
+	// indoor heat sources cools down slower (doesn't goes to save)
+	[HarmonyPatch(typeof(HeatSource), "Update")]
+	static class SlowerCoolDown
+	{
+		static bool Prepare() => Main.config.slowerCoolDown < 1.0f;
+
+		static bool isIndoorAndCoolDown(this HeatSource hs) =>
+			GameManager.GetWeatherComponent().IsIndoorScene() && !hs.IsTurnedOn() && hs.m_TempIncrease > 0f;
+
+		static float prevTemp = 0f;
+
+		static void Prefix(HeatSource __instance)
+		{
+			if (__instance.isIndoorAndCoolDown())
+				prevTemp = __instance.m_TempIncrease;
+		}
+
+		static void Postfix(HeatSource __instance)
+		{
+			if (__instance.isIndoorAndCoolDown())
+				__instance.m_TempIncrease = prevTemp - (prevTemp - __instance.m_TempIncrease) * Main.config.slowerCoolDown;
+		}
 	}
 }

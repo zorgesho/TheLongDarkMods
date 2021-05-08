@@ -23,7 +23,7 @@ namespace MovableContainers
 			if (MovableContainerManager.isAllowedType(container.gameObject))
 				result += _coloredStr(" [pickupable]", UIManager.colorText + "99");
 #if DEBUG
-			result += $" [type: {container.gameObject.baseName()}]";
+			result += $" [type: {container.gameObject.baseName()}, {container.m_LocalizedDisplayName.m_LocalizationID}]";
 #endif
 			return result;
 		}

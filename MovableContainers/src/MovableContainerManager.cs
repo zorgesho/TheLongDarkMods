@@ -57,7 +57,10 @@ namespace MovableContainers
 			new ContainerProps("CONTAINER_SteamerTrunk", "GAMEPLAY_SteamerTrunk", 15f),
 			new ContainerProps("CONTAINER_FirewoodBin", "GAMEPLAY_FireWoodBin", 30f),
 			new ContainerProps("CONTAINER_ForestryCrate", "GAMEPLAY_SupplyBin", 30f),
-			//("CONTAINER_FirstAidKitB",	"GAMEPLAY_FirstAidKit")
+
+			// doesn't work properly:
+			//new ContainerProps("CONTAINER_FirstAidKitB", "GAMEPLAY_FirstAidKit", 0.5f),
+			//new ContainerProps("CONTAINER_CacheStoreCommon", "STORY_HiddenCacheContainer", 0.5f),
 		};
 
 		public static string pickedContainerType { get; private set; } = null;
@@ -70,9 +73,18 @@ namespace MovableContainers
 		public static ContainerProps getContainerProps(GameObject go) => allowedTypes.FirstOrDefault(type => go.name.StartsWith(type.type));
 		static ContainerProps getContainerProps(string type) => allowedTypes.FirstOrDefault(t => t.type == type);
 
-		public static bool isAllowedType(GameObject go) => getContainerProps(go) != null;
+		public static bool isAllowedType(GameObject go)
+		{
+			return
+#if DEBUG
+			Main.config.dbgAllowToMoveAnyContainer ||
+#endif
+			getContainerProps(go) != null;
+		}
 
 		public static void addMoved(string guid) => info.movedContainers.Add(guid);
+
+		static bool isLargeLocation() => Main.config.largeLocations.Any(name => GameManager.m_ActiveScene == name);
 
 		static void initContainersInfo(MovedContainersInfo info)
 		{																									$"MovableContainerManager.initContainersInfo".logDbg();
@@ -94,7 +106,8 @@ namespace MovableContainers
 			// check hidden containers first
 			var obj = info.hiddenGameObjects.FirstOrDefault(go => getContainerProps(go).type == prefabName);
 
-			if (obj)
+			// for large indoor locations we always create new containers, because otherwise they can become invisible
+			if (obj && !isLargeLocation())
 			{
 				showContainer(obj);																			$"Using hidden container instead {obj.baseName()}".logDbg();
 			}
@@ -109,7 +122,7 @@ namespace MovableContainers
 		}
 
 		static GameObject createContainerInternal(string prefabName, string guid = null)
-		{
+		{																									$"Creating new container {prefabName}".logDbg();
 			var obj = containersRoot.createChild(Resources.Load<GameObject>(prefabName));
 
 			Common.Debug.assert(obj?.GetComponent<Container>());

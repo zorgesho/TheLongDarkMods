@@ -17,7 +17,7 @@ namespace Common
 
 		public static GameObject createChild(this GameObject go, string name, Vector3? pos = null)
 		{
-			GameObject child = new(name);
+			GameObject child = new (name);
 			child.setParent(go);
 
 			if (pos != null)

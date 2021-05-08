@@ -1,8 +1,11 @@
 ﻿using System;
-using System.IO;
 using System.Diagnostics;
 
 using MelonLoader;
+
+#if DEBUG
+using System.IO;
+#endif
 
 namespace Common
 {

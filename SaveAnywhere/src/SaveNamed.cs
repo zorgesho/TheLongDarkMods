@@ -16,13 +16,13 @@ namespace SaveAnywhere
 			if (active || !(active = true))
 				return;
 
-			Action okAction = new(() =>
+			Action okAction = new (() =>
 			{
 				active = false;
 				SaveLoad.save(InterfaceManager.m_Panel_Confirmation.GetInputFieldText());
 			});
 
-			Action<bool> cancelAction = new(canceled =>
+			Action<bool> cancelAction = new (canceled =>
 			{
 				if (canceled)
 					active = false;

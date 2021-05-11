@@ -43,6 +43,12 @@ namespace Common.Reflection
 		public static MethodInfo[] methods(this Type type, BindingFlags bf = ReflectionHelper.bfAll) => type.GetMethods(bf);
 	}
 
+	static class Il2CppTypeExtensions
+	{
+		public static Il2CppSystem.Reflection.FieldInfo[] fields(this Il2CppSystem.Type type, Il2CppSystem.Reflection.BindingFlags bf = ReflectionHelper.bfAll_Il2Cpp) => type.GetFields(bf);
+		public static Il2CppSystem.Reflection.PropertyInfo[] properties(this Il2CppSystem.Type type, Il2CppSystem.Reflection.BindingFlags bf = ReflectionHelper.bfAll_Il2Cpp) => type.GetProperties(bf);
+	}
+
 	static class MemberInfoExtensions
 	{
 		public static string fullName(this MemberInfo memberInfo)

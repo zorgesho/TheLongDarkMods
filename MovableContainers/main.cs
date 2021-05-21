@@ -9,9 +9,16 @@ namespace MovableContainers
 {
 	public class Main: Mod
 	{
-		internal const string version = "1.0.0";
-
-		internal static readonly ModConfig config = Config.tryLoad<ModConfig>();
+		internal const string version = "1.1.0";
+		
+		// large locations which has multiple parts
+		// for those locations we'll always create new containers instead of reusing hidden ones
+		public static readonly string[] largeLocations =
+		{
+			"Dam",
+			"DamTransitionZone",
+			"FarmHouseA",
+		};
 
 		protected override void init() => HarmonyHelper.patchAll();
 

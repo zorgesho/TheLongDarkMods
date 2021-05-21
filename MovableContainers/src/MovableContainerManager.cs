@@ -68,7 +68,7 @@ namespace MovableContainers
 
 		public static void addMoved(string guid) => info.movedContainers.Add(guid);
 
-		static bool isLargeLocation() => Main.config.largeLocations.Any(name => GameManager.m_ActiveScene == name);
+		static bool isLargeLocation() => Main.largeLocations.Any(name => GameManager.m_ActiveScene == name);
 
 		static void initContainersInfo(MovedContainersInfo info)
 		{																									$"MovableContainerManager.initContainersInfo".logDbg();

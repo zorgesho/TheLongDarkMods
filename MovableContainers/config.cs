@@ -1,24 +1,27 @@
-﻿using Common.Configuration;
+﻿using ModSettings;
 
 namespace MovableContainers
 {
-	class ModConfig: Config
+	class ModConfig: JsonModSettings
 	{
-		public readonly bool hoverInfo = true;
-		public readonly bool hoverInfoUseColor = true;
-		public readonly int hoverInfoMaxItems = 6;
+		public static ModConfig instance = new ModConfig();
+		public ModConfig() => this.AddToModSettings("Movable Containers");
 
-		// large locations which has multiple parts
-		// for those locations we'll always create new containers instead of reusing hidden ones
-		public readonly string[] largeLocations =
-		{
-			"Dam",
-			"DamTransitionZone",
-			"FarmHouseA",
-		};
+		[Name("Show Hover Information")]
+		public bool hoverInfo = true;
+
+		[Name("Colorful Hover Information")]
+		[Description("The hover information shown may use colors for emphasis.")]
+		public bool hoverInfoUseColor = true;
+
+		[Name("Number Of Items Shown")]
+		[Description("Max Number Of Items Shown In Hover Information")]
+		[Slider(0,10)]
+		public int hoverInfoMaxItems = 6;
 
 #if DEBUG
-		public readonly bool dbgAllowToMoveAnyContainer = true;
+		[Name("Allow To Move Any Container")]
+		public bool dbgAllowToMoveAnyContainer = true;
 #endif
 	}
 }

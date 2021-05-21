@@ -10,11 +10,11 @@ namespace MovableContainers
 	[HarmonyPatch(typeof(Container), "GetInteractiveDisplayText")]
 	static class Container_GetInteractiveDisplayText_Patch
 	{
-		static bool Prepare() => Main.config.hoverInfo;
+		static bool Prepare() => ModConfig.instance.hoverInfo;
 
 		static readonly StringBuilder sb = new();
 
-		static string _coloredStr(string str, string color) => Main.config.hoverInfoUseColor? $"[{color}]{str}[-]": str;
+		static string _coloredStr(string str, string color) => ModConfig.instance.hoverInfoUseColor? $"[{color}]{str}[-]": str;
 
 		static string getActionStr(Container container)
 		{
@@ -52,10 +52,10 @@ namespace MovableContainers
 				var gearItem = item.m_GearItem;
 				var itemName = gearItem.m_LocalizedDisplayName.Text();
 
-				if (Main.config.hoverInfoUseColor && gearItem.GetRoundedCondition() < 50)
+				if (ModConfig.instance.hoverInfoUseColor && gearItem.GetRoundedCondition() < 50)
 					itemName = $"{gearItem.GetColorStringBasedOnCondition()}{itemName}[-]";
 
-				if (items.Count < Main.config.hoverInfoMaxItems)
+				if (items.Count < ModConfig.instance.hoverInfoMaxItems)
 				{
 					items.Add(itemName);
 				}

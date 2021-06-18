@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-using Harmony;
+using HarmonyLib;
 
 namespace Common
 {
@@ -14,9 +14,9 @@ namespace Common
 
 	static class HarmonyHelper
 	{
-		public static HarmonyInstance harmonyInstance { get; private set; }
+		public static HarmonyLib.Harmony harmonyInstance { get; private set; }
 
-		public static void init(HarmonyInstance hInstance) => harmonyInstance ??= hInstance;
+		public static void init(HarmonyLib.Harmony hInstance) => harmonyInstance ??= hInstance;
 
 		public static void patchAll()
 		{
@@ -52,23 +52,7 @@ namespace Common
 
 		// use methods from 'typeWithPatchMethods' class as harmony patches
 		// valid method need to have HarmonyPatch and Harmony[Prefix/Postfix/Transpiler] attributes
-		public static void patch(Type typeWithPatchMethods)
-		{
-			if (typeWithPatchMethods.method("prepare")?.wrap().invoke<bool>() == false)
-				return;
-
-			foreach (var method in typeWithPatchMethods.methods(ReflectionHelper.bfAll | BindingFlags.DeclaredOnly))
-			{
-				if (method.getAttrs<HarmonyPatch>() is HarmonyPatch[] harmonyPatches)
-				{
-					foreach (var targetMethod in harmonyPatches.Select(patch => patch.info.getTargetMethod()))
-					{
-						MethodInfo _method_if<H>() where H: Attribute => method.checkAttr<H>()? method: null;
-						patch(targetMethod, _method_if<HarmonyPrefix>(), _method_if<HarmonyPostfix>());
-					}
-				}
-			}
-		}
+		public static void patch(Type typeWithPatchMethods) => harmonyInstance.PatchAll(typeWithPatchMethods);
 	}
 
 	static class HarmonyExtensions

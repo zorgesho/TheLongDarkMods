@@ -51,7 +51,7 @@ namespace Common
 		{
 			string currentFrame = $" [{UnityEngine.Time.frameCount}]";
 			string formattedMsg = $"{DateTime.Now:HH:mm:ss.fff}{currentFrame}  {msgType}: {str}";
-			MelonLogger.Log(formattedMsg);
+			MelonLogger.Msg(formattedMsg);
 #if DEBUG
 			try { File.AppendAllText(customLogPath, formattedMsg + Environment.NewLine); }
 			catch (UnauthorizedAccessException) {}

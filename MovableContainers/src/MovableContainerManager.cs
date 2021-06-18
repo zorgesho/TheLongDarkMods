@@ -98,7 +98,7 @@ namespace MovableContainers
 			else
 			{
 				obj = createContainerInternal(prefabName);
-				info.newContainers.Add(new (prefabName, obj.GetComponent<ObjectGuid>().m_Guid));
+				info.newContainers.Add(new (obj.GetComponent<ObjectGuid>().m_Guid, prefabName));
 			}
 
 			lastCreatedContainer = obj;

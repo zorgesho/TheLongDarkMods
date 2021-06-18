@@ -6,6 +6,7 @@ using Harmony;
 using UnityEngine;
 
 using Common;
+using Common.Reflection;
 using Common.Configuration;
 
 namespace SaveAnywhere
@@ -34,9 +35,9 @@ namespace SaveAnywhere
 		public static void updateSlots(SaveSlotType type)
 		{
 			if (type == SaveSlotType.CHALLENGE)
-				InterfaceManager.m_Panel_MainMenu.m_ChallengeSaveSlots = SaveGameSystem.GetSortedSaveSlots(Episode.One, SaveSlotType.CHALLENGE);
+				Il2CppHelper.setFieldValue(InterfaceManager.m_Panel_MainMenu, "m_ChallengeSaveSlots", SaveGameSystem.GetSortedSaveSlots(Episode.One, SaveSlotType.CHALLENGE));
 			else if (type == SaveSlotType.SANDBOX)
-				InterfaceManager.m_Panel_MainMenu.m_SandboxSlots = SaveGameSystem.GetSortedSaveSlots(Episode.One, SaveSlotType.SANDBOX);
+				Il2CppHelper.setFieldValue(InterfaceManager.m_Panel_MainMenu, "m_SandboxSlots", SaveGameSystem.GetSortedSaveSlots(Episode.One, SaveSlotType.SANDBOX));
 		}
 
 		static bool setCurrentSlot(string slot)

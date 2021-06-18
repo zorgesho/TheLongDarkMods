@@ -1,7 +1,7 @@
 ﻿#if DEBUG
 using System.Diagnostics;
 
-using Harmony;
+using HarmonyLib;
 using UnityEngine;
 using Newtonsoft.Json;
 

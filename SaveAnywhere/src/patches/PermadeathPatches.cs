@@ -1,4 +1,4 @@
-﻿using Harmony;
+﻿using HarmonyLib;
 using Common;
 
 namespace SaveAnywhere
@@ -6,7 +6,7 @@ namespace SaveAnywhere
 	[PatchClass]
 	static class PermadeathPatches
 	{
-		static bool prepare() => Main.config.disablePermadeath;
+		static bool Prepare() => Main.config.disablePermadeath;
 
 		static bool disableSlotDeleting = false;
 

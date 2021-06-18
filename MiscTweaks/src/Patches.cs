@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-using Harmony;
+using HarmonyLib;
 using UnityEngine;
 using UnhollowerBaseLib;
 
@@ -100,7 +100,7 @@ namespace MiscTweaks
 	[PatchClass]
 	static class UnlimitedSleepPatches
 	{
-		static bool prepare() => Main.config.allowUnlimitedSleep;
+		static bool Prepare() => Main.config.allowUnlimitedSleep;
 
 		static bool unlimitedSleep = false;
 
@@ -147,7 +147,7 @@ namespace MiscTweaks
 		static Container lastContainer;
 		static Il2CppArrayBase<string> gearToInstantiate;
 
-		static bool prepare() => Main.config.dbgShowMissedItemsForEmptyContainers;
+		static bool Prepare() => Main.config.dbgShowMissedItemsForEmptyContainers;
 
 		static void setContainer(Container container)
 		{

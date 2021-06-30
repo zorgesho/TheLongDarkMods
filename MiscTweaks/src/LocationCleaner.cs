@@ -41,8 +41,8 @@ namespace MiscTweaks
 
 		static bool shouldRemove(GameObject go)
 		{
-			return objectsToClean.Any(go.name.StartsWith) ||
-				   (go.GetComponent<qd_Decal>()?.texture.name is string decalName && decalsToClean.Any(decalName.StartsWith));
+			return objectsToClean.Any(go.name.startsWith) ||
+				   (go.GetComponent<qd_Decal>()?.texture.name is string decalName && decalsToClean.Any(decalName.startsWith));
 		}
 
 		static void cleanUp(GameObject go)
@@ -74,7 +74,7 @@ namespace MiscTweaks
 
 			static void Postfix(string name, string sceneSaveName)
 			{																																	$"Loading scene {name}:{sceneSaveName}".logDbg();
-				if (!scenesToClean.Any(sceneSaveName.StartsWith))
+				if (!scenesToClean.Any(sceneSaveName.startsWith))
 					return;
 
 				foreach (var go in SceneManager.GetActiveScene().GetRootGameObjects())

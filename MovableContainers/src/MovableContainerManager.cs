@@ -54,7 +54,7 @@ namespace MovableContainers
 		static GameObject containersRoot;
 		static GameObject lastCreatedContainer;
 
-		public static ContainerProps getContainerProps(GameObject go) => allowedTypes.FirstOrDefault(type => go.name.StartsWith(type.type));
+		public static ContainerProps getContainerProps(GameObject go) => allowedTypes.FirstOrDefault(type => go.name.startsWith(type.type));
 		static ContainerProps getContainerProps(string type) => allowedTypes.FirstOrDefault(t => t.type == type);
 
 		public static bool isAllowedType(GameObject go)

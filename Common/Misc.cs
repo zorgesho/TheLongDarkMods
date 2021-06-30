@@ -39,6 +39,8 @@ namespace Common
 			return filename.isNullOrEmpty()? filename: Paths.makeRootPath(Paths.ensureExtension(filename, "txt"));
 		}
 
+		public static bool startsWith(this string s, string str) => s.StartsWith(str, StringComparison.Ordinal);
+
 		public static void saveToFile(this string s, string localPath)
 		{
 			string targetPath = formatFileName(localPath);

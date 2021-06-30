@@ -66,7 +66,7 @@ namespace MovableContainers
 			}
 		}
 
-		[PatchClass]
+		[HarmonyPatch]
 		static class Patches
 		{
 			[HarmonyPrefix, HarmonyPatch(typeof(EquipItemPopup), "Update")]

@@ -150,7 +150,7 @@ namespace SaveAnywhere
 			CameraFade.StartAlphaFade(Color.black, false, GameManager.m_SceneTransitionFadeOutTime, 0f, action);
 		}
 
-		[PatchClass]
+		[HarmonyPatch]
 		static class Patches
 		{
 			static SandboxManager sbm = null; // to destroy sandbox manager immediate

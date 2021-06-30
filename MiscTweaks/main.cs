@@ -13,8 +13,6 @@ namespace MiscTweaks
 
 		static bool moveWindow = false;
 
-		protected override void init() => HarmonyHelper.patchAll();
-
 		public override void OnUpdate()
 		{
 			if (moveWindow && !(moveWindow = false)) // next frame after switching resolution

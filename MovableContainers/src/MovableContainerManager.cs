@@ -221,7 +221,7 @@ namespace MovableContainers
 			PickPlaceHelper.tryEnterPlaceMode(obj);
 		}
 
-		[PatchClass]
+		[HarmonyPatch]
 		static class Patches
 		{
 			[HarmonyPostfix, HarmonyPatch(typeof(Inventory), "GetExtraWeightKG")]

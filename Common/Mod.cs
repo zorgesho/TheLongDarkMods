@@ -11,10 +11,7 @@ namespace Common
 
 		public override void OnApplicationStart()
 		{
-			HarmonyHelper.init(HarmonyInstance);
-
 			System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
-
 			init();
 		}
 	}

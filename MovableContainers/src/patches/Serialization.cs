@@ -9,7 +9,7 @@ namespace MovableContainers
 {
 	static partial class MovableContainerManager
 	{
-		[PatchClass]
+		[HarmonyPatch]
 		static class SerializationPatches
 		{
 			const string savename = "moved-containers-info";

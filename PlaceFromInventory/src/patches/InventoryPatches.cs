@@ -1,12 +1,10 @@
 ﻿using HarmonyLib;
 using UnityEngine;
 
-using Common;
-
 namespace PlaceFromInventory
 {
 	// allows to drop & place items with right click from inventory and clothing tabs
-	[PatchClass]
+	[HarmonyPatch]
 	static class InventoryPatches
 	{
 		static GearItem clothItemPlaceAfterDrop;

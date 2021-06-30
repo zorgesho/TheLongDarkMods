@@ -10,7 +10,7 @@ namespace SaveAnywhere
 {
 	using Object = UnityEngine.Object;
 
-	[PatchClass]
+	[HarmonyPatch]
 	static class UIPatches
 	{
 		static bool backToPauseMenu = false;

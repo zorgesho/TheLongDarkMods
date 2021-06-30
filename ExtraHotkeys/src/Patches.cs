@@ -4,11 +4,9 @@ using HarmonyLib;
 using Rewired;
 using UnityEngine;
 
-using Common;
-
 namespace ExtraHotkeys
 {
-	[PatchClass]
+	[HarmonyPatch]
 	static class BindPatches
 	{
 		static KeyBind bindingNow;

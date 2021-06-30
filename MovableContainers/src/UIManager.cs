@@ -79,7 +79,7 @@ namespace MovableContainers
 			str = str.Insert(str.IndexOf('/') - 1, $"[{colorText}] (+{addedWeight:F2})[-]");
 		}
 
-		[PatchClass]
+		[HarmonyPatch]
 		static class Patches
 		{
 			[HarmonyPostfix, HarmonyPatch(typeof(Panel_HUD), "Awake")]

@@ -1,9 +1,8 @@
 ﻿using HarmonyLib;
-using Common;
 
 namespace SaveAnywhere
 {
-	[PatchClass]
+	[HarmonyPatch]
 	static class PermadeathPatches
 	{
 		static bool Prepare() => Main.config.disablePermadeath;

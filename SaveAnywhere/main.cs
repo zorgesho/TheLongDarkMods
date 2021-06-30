@@ -13,11 +13,7 @@ namespace SaveAnywhere
 
 		internal static SaveSlotType gameType => GameManager.GetExperienceModeManagerComponent().IsChallengeActive()? SaveSlotType.CHALLENGE: SaveSlotType.SANDBOX;
 
-		protected override void init()
-		{
-			HarmonyHelper.patchAll();
-			SaveGameSlots.MAX_SAVESLOTS = config.maxSaveSlots;
-		}
+		protected override void init() => SaveGameSlots.MAX_SAVESLOTS = config.maxSaveSlots;
 
 		public override void OnUpdate()
 		{

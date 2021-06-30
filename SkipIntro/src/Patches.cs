@@ -3,7 +3,7 @@ using Common;
 
 namespace SkipIntro
 {
-	[PatchClass]
+	[HarmonyPatch]
 	static class Patches
 	{
 		[HarmonyPostfix, HarmonyPatch(typeof(BootUpdate), "Update")]

@@ -9,7 +9,7 @@ using Common;
 
 namespace SaveAnywhere
 {
-	[PatchClass]
+	[HarmonyPatch]
 	static class DebugPatches
 	{
 		static readonly bool dumpSaveSlotOnLoad = false;
@@ -83,18 +83,6 @@ namespace SaveAnywhere
 		{
 			if (dumpSaveSlotOnLoad)
 				dumpSaveSlot(slotName);
-		}
-
-		[HarmonyPrefix, HarmonyPatch(typeof(SandboxManager), "Serialize")]
-		static void SandboxManager_Serialize_Prefix()
-		{
-			$"SandboxManager.Serialize".logDbg();
-		}
-
-		[HarmonyPrefix, HarmonyPatch(typeof(SandboxManager), "Deserialize")]
-		static void SandboxManager_Deserialize_Prefix()
-		{
-			$"SandboxManager.Deserialize".logDbg();
 		}
 
 		[HarmonyPatch(typeof(SaveGameSlots), "CreateSaveSlotInfo")]

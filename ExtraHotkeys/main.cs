@@ -9,15 +9,7 @@ namespace ExtraHotkeys
 
 		internal static ModConfig config = Config.tryLoad<ModConfig>(Config.LoadOptions.ForcedLoad);
 
-		protected override void init()
-		{
-			HarmonyHelper.patchAll();
-			HotkeyManager.init();
-		}
-
-		public override void OnUpdate()
-		{
-			HotkeyManager.update();
-		}
+		protected override void init() => HotkeyManager.init();
+		public override void OnUpdate() => HotkeyManager.update();
 	}
 }

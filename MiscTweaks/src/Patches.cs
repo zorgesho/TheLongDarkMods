@@ -43,7 +43,7 @@ namespace MiscTweaks
 	}
 
 
-	[PatchClass]
+	[HarmonyPatch]
 	static class GunPatches
 	{
 		// cancel reloading in the process
@@ -97,7 +97,7 @@ namespace MiscTweaks
 
 
 	// unlimited sleep with Control pressed
-	[PatchClass]
+	[HarmonyPatch]
 	static class UnlimitedSleepPatches
 	{
 		static bool Prepare() => Main.config.allowUnlimitedSleep;
@@ -139,7 +139,7 @@ namespace MiscTweaks
 
 
 	// shows items for empty containers which could be instantiated there
-	[PatchClass]
+	[HarmonyPatch]
 	static class MissedItems
 	{
 		static readonly StringBuilder sb = new();

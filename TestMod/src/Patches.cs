@@ -5,7 +5,7 @@ using Common;
 
 namespace TestMod
 {
-	[PatchClass]
+	[HarmonyPatch]
 	static class Patches
 	{
 		[HarmonyPrefix, HarmonyPatch(typeof(PlayerManager), "Awake")]

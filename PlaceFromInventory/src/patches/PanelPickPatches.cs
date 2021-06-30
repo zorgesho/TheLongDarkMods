@@ -1,12 +1,10 @@
 ﻿using HarmonyLib;
 using UnityEngine;
 
-using Common;
-
 namespace PlaceFromInventory
 {
 	// allows to drop&place items as stack from drop panel
-	[PatchClass]
+	[HarmonyPatch]
 	static class PanelPickPatches
 	{
 		static bool dropAsStack = false;

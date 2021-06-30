@@ -13,8 +13,6 @@ namespace MovableContainers
 
 		internal static readonly ModConfig config = Config.tryLoad<ModConfig>();
 
-		protected override void init() => HarmonyHelper.patchAll();
-
 #if DEBUG
 		public override void OnUpdate()
 		{

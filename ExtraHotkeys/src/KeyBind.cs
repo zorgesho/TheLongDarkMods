@@ -1,16 +1,16 @@
 ﻿using System;
 
 using UnityEngine;
-using UnhollowerRuntimeLib;
+using MelonLoader;
 using UnhollowerBaseLib.Attributes;
 
 using Common;
 
 namespace ExtraHotkeys
 {
+	[RegisterTypeInIl2Cpp]
 	class KeyBind: MonoBehaviour
 	{
-		static KeyBind() => ClassInjector.RegisterTypeInIl2Cpp<KeyBind>();
 		public KeyBind(IntPtr ptr): base(ptr) {}
 
 		UILabel nameLabel;

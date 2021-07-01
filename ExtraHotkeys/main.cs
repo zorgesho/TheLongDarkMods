@@ -5,7 +5,7 @@ namespace ExtraHotkeys
 {
 	public class Main: Mod
 	{
-		internal const string version = "1.0.0";
+		internal const string version = "1.1.0";
 
 		internal static ModConfig config = Config.tryLoad<ModConfig>(Config.LoadOptions.ForcedLoad);
 

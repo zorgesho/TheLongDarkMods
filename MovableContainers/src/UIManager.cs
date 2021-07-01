@@ -79,6 +79,11 @@ namespace MovableContainers
 			str = str.Insert(str.IndexOf('/') - 1, $"[{colorText}] (+{addedWeight:F2})[-]");
 		}
 
+		static bool shouldDisableRadialButton()
+		{
+			return GameUtils.PlayerManager.GetControlMode() == PlayerControlMode.InVehicle;
+		}
+
 		[HarmonyPatch]
 		static class Patches
 		{
@@ -106,9 +111,12 @@ namespace MovableContainers
 
 				Panel_ActionsRadial.RadialInfo info = new() { m_RadialElement = Panel_ActionsRadial.RadialType.Shelter };
 				info.m_SpriteName = info.m_SpriteNameHover = "icoMap_container";
-				info.m_IconActiveColor = info.m_IconActiveHoverColor = colorUI;
+				info.m_IconActiveColor = info.m_IconActiveHoverColor = shouldDisableRadialButton()? Color.gray: colorUI;
 
-				arm.SetRadialInfo(info, new Action(() => MovableContainerManager.dropContainer()), false, false);
+				Action action = shouldDisableRadialButton()
+									? new (() => GameUtils.showErrorMessage("Can't place container here"))
+									: new (() => MovableContainerManager.dropContainer());
+				arm.SetRadialInfo(info, action, false, false);
 				arm.m_NameWhenHoveredOver = "place " + Localization.Get(MovableContainerManager.pickedContainerName);
 			}
 		}

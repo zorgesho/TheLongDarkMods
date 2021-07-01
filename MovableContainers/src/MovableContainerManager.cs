@@ -63,7 +63,7 @@ namespace MovableContainers
 #if DEBUG
 			Main.config.dbgAllowToMoveAnyContainer ||
 #endif
-			getContainerProps(go) != null;
+			(getContainerProps(go) != null && !go.GetComponentInChildren<Renderer>().isPartOfStaticBatch);
 		}
 
 		public static void addMoved(string guid) => info.movedContainers.Add(guid);
@@ -154,9 +154,7 @@ namespace MovableContainers
 
 			if (!allowed)
 			{
-				error?.onScreen();
-				GameAudioManager.PlayGUIError();
-
+				GameUtils.showErrorMessage(error);
 				return false;
 			}
 

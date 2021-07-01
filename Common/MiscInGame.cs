@@ -24,5 +24,11 @@ namespace Common
 		public static Inventory Inventory => GameManager.GetInventoryComponent();
 
 		public static bool isMainMenu() => GameManager.m_ActiveScene == "MainMenu";
+
+		public static void showErrorMessage(string message)
+		{
+			message?.onScreen();
+			GameAudioManager.PlayGUIError();
+		}
 	}
 }

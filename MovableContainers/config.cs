@@ -18,7 +18,7 @@ namespace MovableContainers
 		};
 
 #if DEBUG
-		public readonly bool dbgAllowToMoveAnyContainer = true;
+		public readonly bool dbgAllowToMoveAnyContainer = false;
 #endif
 	}
 }

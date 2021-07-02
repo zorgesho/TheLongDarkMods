@@ -23,6 +23,14 @@ namespace Common
 		public static PlayerManager PlayerManager => GameManager.GetPlayerManagerComponent();
 		public static Inventory Inventory => GameManager.GetInventoryComponent();
 
+		public static GearItem addItem(string name, int count = 1)
+		{
+			var item = PlayerManager.AddItemCONSOLE(name, count);
+			item.m_CurrentHP = item.m_MaxHP;
+
+			return item;
+		}
+
 		public static bool isMainMenu() => GameManager.m_ActiveScene == "MainMenu";
 
 		public static void showErrorMessage(string message)

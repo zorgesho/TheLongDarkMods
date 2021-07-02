@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{F41B6151-2
 		.gitignore = .gitignore
 		mod-list.json = mod-list.json
 		post-build.bat = post-build.bat
+		post-build.props = post-build.props
+		project.props = project.props
 		readme.md = readme.md
 	EndProjectSection
 EndProject

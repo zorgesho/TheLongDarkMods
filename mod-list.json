@@ -6,14 +6,14 @@
       "name": "ExtraHotkeys",
       "author": "zorgesho",
       "authorURL": "https://github.com/zorgesho",
-      "version": "1.0.0",
-      "updated": "2021-04-19",
+      "version": "1.1.0",
+      "updated": "2021-07-01",
       "description": "This mod adds additional hotkeys for equipping gear items",
       "modURL": "https://github.com/zorgesho/TheLongDarkMods/tree/master/ExtraHotkeys",
-      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/EH-v1.0.0/ExtraHotkeys.zip",
+      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/EH-v1.1.0/ExtraHotkeys.zip",
       "testedon": {
-        "tldversion": "1.93",
-        "mlversion": "0.2.7.4"
+        "tldversion": "1.94",
+        "mlversion": "0.4.0"
       },
       "dependencies": [],
       "status": {
@@ -26,14 +26,14 @@
       "name": "MovableContainers",
       "author": "zorgesho",
       "authorURL": "https://github.com/zorgesho",
-      "version": "1.0.0",
-      "updated": "2021-04-24",
+      "version": "1.1.0",
+      "updated": "2021-07-01",
       "description": "This mod allows to move some types of containers (inside one location and between locations)",
       "modURL": "https://github.com/zorgesho/TheLongDarkMods/tree/master/MovableContainers",
-      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/MC-v1.0.0/MovableContainers.zip",
+      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/MC-v1.1.0/MovableContainers.zip",
       "testedon": {
-        "tldversion": "1.93",
-        "mlversion": "0.2.7.4"
+        "tldversion": "1.94",
+        "mlversion": "0.4.0"
       },
       "dependencies": [],
       "status": {
@@ -46,14 +46,14 @@
       "name": "PlaceFromInventory",
       "author": "zorgesho",
       "authorURL": "https://github.com/zorgesho",
-      "version": "1.0.0",
-      "updated": "2021-04-20",
+      "version": "1.1.0",
+      "updated": "2021-07-01",
       "description": "This mod allows to place items right from the inventory screen with a right mouse click. Also, it places any stackable items as one item (as stack).",
       "modURL": "https://github.com/zorgesho/TheLongDarkMods/tree/master/PlaceFromInventory",
-      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/PFI-v1.0.0/PlaceFromInventory.zip",
+      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/PFI-v1.1.0/PlaceFromInventory.zip",
       "testedon": {
-        "tldversion": "1.93",
-        "mlversion": "0.2.7.4"
+        "tldversion": "1.94",
+        "mlversion": "0.4.0"
       },
       "dependencies": [],
       "status": {
@@ -66,14 +66,14 @@
       "name": "SaveAnywhere",
       "author": "zorgesho",
       "authorURL": "https://github.com/zorgesho",
-      "version": "1.0.0",
-      "updated": "2021-04-17",
+      "version": "1.1.0",
+      "updated": "2021-07-01",
       "description": "This mod allows to save and load anywhere in the survival mode like in the story mode. Also, it can disable permadeath.",
       "modURL": "https://github.com/zorgesho/TheLongDarkMods/tree/master/SaveAnywhere",
-      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/SA-v1.0.0/SaveAnywhere.zip",
+      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/SA-v1.1.0/SaveAnywhere.zip",
       "testedon": {
-        "tldversion": "1.93",
-        "mlversion": "0.2.7.4"
+        "tldversion": "1.94",
+        "mlversion": "0.4.0"
       },
       "dependencies": [],
       "status": {

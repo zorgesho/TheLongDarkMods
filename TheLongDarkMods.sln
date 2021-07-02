@@ -38,6 +38,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaceFromInventory", "Place
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovableContainers", "MovableContainers\MovableContainers.csproj", "{E388F144-1F49-42EA-BEAC-AAB65445D3C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookWhileFishing", "CookWhileFishing\CookWhileFishing.csproj", "{7505DB0D-5586-4CA0-BA4B-A022E7D00E15}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Common\Common.Config\Common.Config.projitems*{06a3f033-1506-4b0f-9e4d-51547ae89b18}*SharedItemsImports = 4
@@ -47,6 +49,7 @@ Global
 		Common\Common.projitems*{598e50ee-9bae-46a8-9c65-7f276286f391}*SharedItemsImports = 13
 		Common\Common.Config\Common.Config.projitems*{6b51c924-ae04-4429-a880-08c91e6fd975}*SharedItemsImports = 4
 		Common\Common.projitems*{6b51c924-ae04-4429-a880-08c91e6fd975}*SharedItemsImports = 4
+		Common\Common.projitems*{7505db0d-5586-4ca0-ba4b-a022e7d00e15}*SharedItemsImports = 4
 		Common\Common.projitems*{764d4c12-f80e-4173-9da5-a1d694a3fe13}*SharedItemsImports = 4
 		Common\Common.Config\Common.Config.projitems*{b39de674-737e-4f48-a1f7-a26b7e3d501f}*SharedItemsImports = 13
 		Common\Common.projitems*{d11c9e7d-0b01-4a6d-9df3-00c03b37731f}*SharedItemsImports = 4
@@ -111,6 +114,12 @@ Global
 		{E388F144-1F49-42EA-BEAC-AAB65445D3C4}.publish|Any CPU.Build.0 = publish|Any CPU
 		{E388F144-1F49-42EA-BEAC-AAB65445D3C4}.testbuild|Any CPU.ActiveCfg = testbuild|Any CPU
 		{E388F144-1F49-42EA-BEAC-AAB65445D3C4}.testbuild|Any CPU.Build.0 = testbuild|Any CPU
+		{7505DB0D-5586-4CA0-BA4B-A022E7D00E15}.dev|Any CPU.ActiveCfg = dev|Any CPU
+		{7505DB0D-5586-4CA0-BA4B-A022E7D00E15}.dev|Any CPU.Build.0 = dev|Any CPU
+		{7505DB0D-5586-4CA0-BA4B-A022E7D00E15}.publish|Any CPU.ActiveCfg = publish|Any CPU
+		{7505DB0D-5586-4CA0-BA4B-A022E7D00E15}.publish|Any CPU.Build.0 = publish|Any CPU
+		{7505DB0D-5586-4CA0-BA4B-A022E7D00E15}.testbuild|Any CPU.ActiveCfg = testbuild|Any CPU
+		{7505DB0D-5586-4CA0-BA4B-A022E7D00E15}.testbuild|Any CPU.Build.0 = testbuild|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,6 +128,7 @@ Global
 		{D11C9E7D-0B01-4A6D-9DF3-00C03B37731F} = {A1BC4824-B6EA-4B47-BBAA-3B6E9291DAE9}
 		{598E50EE-9BAE-46A8-9C65-7F276286F391} = {65F6F092-6619-4064-A6D1-51F137C57E41}
 		{B39DE674-737E-4F48-A1F7-A26B7E3D501F} = {65F6F092-6619-4064-A6D1-51F137C57E41}
+		{7505DB0D-5586-4CA0-BA4B-A022E7D00E15} = {A1BC4824-B6EA-4B47-BBAA-3B6E9291DAE9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C14B4D75-5F94-45C7-AA7F-9C13CC209522}

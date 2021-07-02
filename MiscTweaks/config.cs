@@ -7,7 +7,7 @@ namespace MiscTweaks
 	{
 		public readonly KeyCode hotkeyConsole = KeyCode.BackQuote;
 		public readonly KeyCode hotkeySwitchResolution = KeyCode.F12;
-		public readonly KeyCode hotkeyCheatUnlockSafe = KeyCode.F11;
+		public readonly KeyCode hotkeyDevCheat = KeyCode.F11;
 
 		public readonly bool stackMatches = false;
 		public readonly bool disableVoiceOver = true;

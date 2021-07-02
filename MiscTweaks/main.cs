@@ -26,11 +26,8 @@ namespace MiscTweaks
 					Screen.SetResolution(2560, 1440, true);
 			}
 
-			if (InputHelper.isKeyDown(config.hotkeyCheatUnlockSafe))
-			{
-				if (GameUtils.PlayerManager.m_InteractiveObjectUnderCrosshair?.GetComponentInChildren<SafeCracking>() is SafeCracking safeCracking)
-					safeCracking.m_Cracked = true;
-			}
+			if (InputHelper.isKeyDown(config.hotkeyDevCheat))
+				DevCheats.processObject(GameUtils.PlayerManager.m_InteractiveObjectUnderCrosshair);
 		}
 	}
 }

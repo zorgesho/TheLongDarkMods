@@ -108,7 +108,7 @@ namespace CookWhileFishing
 			item.m_Cookable.m_DoNotCookWhenDropped = true;
 
 			if (pot)
-				pot.StartCooking(item.GetComponent<GearItem>());
+				pot.StartCooking(item);
 			else
 				gearPlacePoint.DropAndPlaceItem(item);
 

@@ -10,6 +10,8 @@ namespace Common
 
 	static class ObjectAndComponentExtensions
 	{
+		public static C ensureComponent<C>(this GameObject go) where C: Component => go.GetComponent<C>() ?? go.AddComponent<C>();
+
 		public static void setParent(this GameObject go, GameObject parent) => go.transform.SetParent(parent.transform, false);
 		public static GameObject getParent(this GameObject go) => go.transform.parent?.gameObject;
 

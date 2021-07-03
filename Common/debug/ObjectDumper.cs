@@ -92,7 +92,7 @@ namespace Common
 
 							foreach (var prop in properties)
 								if (prop.GetGetMethod() != null)
-									_dumpValue(prop.Name, prop.PropertyType, prop.GetValue(obj, null), indent);
+									_dumpValue(prop.Name, prop.PropertyType, prop.GetValue(obj), indent);
 						}
 					}
 
@@ -124,6 +124,7 @@ namespace Common
 				{
 					if (type == Il2CppType.Of<int>())			return value.Unbox<int>().ToString();
 					if (type == Il2CppType.Of<float>())			return value.Unbox<float>().ToString();
+					if (type == Il2CppType.Of<bool>())			return value.Unbox<bool>().ToString();
 					if (type == Il2CppType.Of<Color>())			return value.Unbox<Color>().ToString();
 					if (type == Il2CppType.Of<Vector2>())		return value.Unbox<Vector2>().ToString("F5");
 					if (type == Il2CppType.Of<Vector3>())		return value.Unbox<Vector3>().ToString("F5");

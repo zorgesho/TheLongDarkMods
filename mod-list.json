@@ -3,6 +3,26 @@
   "authorURL": "https://github.com/zorgesho",
   "mods": [
     {
+      "name": "CookWhileFishing",
+      "author": "zorgesho",
+      "authorURL": "https://github.com/zorgesho",
+      "version": "1.0.0",
+      "updated": "2021-07-03",
+      "description": "This mod allows to cook the catched fish automatically without interruption of the fishing",
+      "modURL": "https://github.com/zorgesho/TheLongDarkMods/tree/master/CookWhileFishing",
+      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/CWF-v1.0.0/CookWhileFishing.zip",
+      "testedon": {
+        "tldversion": "1.94",
+        "mlversion": "0.4.0"
+      },
+      "dependencies": [],
+      "status": {
+        "working": true,
+        "issues": "",
+        "notes": ""
+      }
+    },
+    {
       "name": "ExtraHotkeys",
       "author": "zorgesho",
       "authorURL": "https://github.com/zorgesho",

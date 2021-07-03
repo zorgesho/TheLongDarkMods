@@ -60,7 +60,7 @@ namespace CookWhileFishing
 #endif
 			// if we already cooking meat when we start fishing, then we'll also cook meat while fishing
 			var gear = gearPlacePoint?.m_PlacedGear; // can't use null-conditional operator with 'm_PlacedGear', it can be in destroyed state
-			cookMeatToo = gear && gear.GetComponent<CookingPotItem>()?.m_GearItemBeingCooked?.GetComponent<FoodItem>().m_IsFish == false;
+			cookMeatToo = gear && gear.GetComponent<CookingPotItem>()?.m_GearItemBeingCooked?.GetComponent<FoodItem>()?.m_IsFish == false;
 		}
 
 		void Update()
@@ -83,12 +83,20 @@ namespace CookWhileFishing
 
 				pot = gearPlacePoint.m_PlacedGear.GetComponent<CookingPotItem>();
 
+				if (pot.m_LitersSnowBeingMelted > 0f || pot.m_LitersWaterBeingBoiled > 0f) // if we started with water in pot
+				{
+					if (pot.m_CookingState == CookingPotItem.CookingState.Cooking || pot.m_LitersWaterBeingBoiled == 0f)
+						return;
+																													"AutoCook.Update: picking up boiled water".logDbg();
+					pot.PickUpCookedItem();
+				}
+
 				if (pot.m_GearItemBeingCooked)
 				{
 					if (pot.GetCookingState() == CookingPotItem.CookingState.Cooking)
 						return;
 																													$"AutoCook.Update: picking up cooked item {pot.m_GearItemBeingCooked.name}".logDbg();
-					pot.PickUpCookedGearItem(true);
+					pot.PickUpCookedItem();
 				}
 			}
 

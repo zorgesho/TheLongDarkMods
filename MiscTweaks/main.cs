@@ -28,6 +28,21 @@ namespace MiscTweaks
 
 			if (InputHelper.isKeyDown(config.hotkeyDevCheat))
 				DevCheats.processObject(GameUtils.PlayerManager.m_InteractiveObjectUnderCrosshair);
+
+			if (InputHelper.isKeyDown(config.hotkeyJump))
+			{
+				var fatigue = GameManager.GetFatigueComponent();
+
+				if (fatigue.m_CurrentFatigue < fatigue.m_MaxFatigue)
+				{
+					GameManager.GetVpFPSPlayer()?.Controller.Jump();
+					fatigue.AddFatigue(config.jumpFatigueDrain);
+				}
+				else
+				{
+					GameAudioManager.PlayGUIError();
+				}
+			}
 		}
 	}
 }

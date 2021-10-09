@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using HarmonyLib;
 using UnityEngine;
+using UnhollowerRuntimeLib;
 
 using Common;
 
@@ -193,6 +194,38 @@ namespace SaveAnywhere
 
 			__instance.m_BasicMenu.AddItem("LoadGame", 0, 0, Localization.Get("GAMEPLAY_LoadGame"), Localization.Get("GAMEPLAY_DescriptionLoadGame"), null, action, defaultColor, defaultColor);
 			__instance.m_BasicMenu.moveItemTo(2);
+		}
+
+		[HarmonyPatch]
+		static class MainMenuPanelsUnloadBlocker
+		{
+			static List<Il2CppSystem.Type> keepLoaded = null;
+			static bool shouldKeepLoaded(Il2CppSystem.Type panelType) => keepLoaded?.FindIndex(type => type == panelType) >= 0; // can't use 'Contains' here
+
+			[HarmonyPrefix, HarmonyPatch(typeof(InterfaceManager), "UnloadMainMenuPanels")]
+			static void InterfaceManager_UnloadMainMenuPanels_Prefix()
+			{
+				keepLoaded = Main.gameType switch
+				{
+					SaveSlotType.SANDBOX => new() { Il2CppType.Of<Panel_Sandbox>(), Il2CppType.Of<Panel_ChooseSandbox>() },
+					SaveSlotType.CHALLENGE => new() { Il2CppType.Of<Panel_Challenges>(), Il2CppType.Of<Panel_ChooseChallenge>() },
+					_ => null
+				};
+
+				keepLoaded?.Add(Il2CppType.Of<Panel_MainMenu>());
+			}
+
+			[HarmonyPostfix, HarmonyPatch(typeof(InterfaceManager), "UnloadMainMenuPanels")]
+			static void InterfaceManager_UnloadMainMenuPanels_Postfix()
+			{
+				keepLoaded = null;
+			}
+
+			[HarmonyPrefix, HarmonyPatch(typeof(InterfaceManager), "TryDestroyPanel_Internal")]
+			static bool InterfaceManager_TryDestroyPanelInternal_Prefix(Il2CppSystem.Type panelType)
+			{																										$"InterfaceManager.TryDestroyPanel: prevent destroying {panelType.Name}".logDbg(shouldKeepLoaded(panelType));
+				return !shouldKeepLoaded(panelType);
+			}
 		}
 	}
 }

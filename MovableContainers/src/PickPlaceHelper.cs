@@ -11,7 +11,6 @@ namespace MovableContainers
 	{
 		public static bool placingContainer { get; private set; } = false;
 
-		static Quaternion rotation;
 		static float addedWeight = 0f;
 		static readonly List<Collider> colliders = new();
 
@@ -24,9 +23,10 @@ namespace MovableContainers
 			addedWeight = go.GetComponent<Container>().GetTotalWeightKG() + (MovableContainerManager.getContainerProps(go)?.weight ?? 0f);
 
 			placingContainer = true;
-			rotation = go.transform.rotation;
 
-			GameUtils.PlayerManager.StartPlaceMesh(go, 5f, PlaceMeshFlags.None);
+			GameUtils.PlayerManager.StartPlaceMesh(go, PlaceMeshFlags.None);
+			GameUtils.PlayerManager.m_RotationAngle = go.transform.localEulerAngles.y;
+
 			UIManager.setPickupButtonVisible(true, MovableContainerManager.isAllowedToPickup(go).allowed);
 
 			if (go.GetComponent<ObjectGuid>()?.m_Guid is string guid)
@@ -81,13 +81,6 @@ namespace MovableContainers
 			[HarmonyPrefix, HarmonyPatch(typeof(PlayerManager), "InteractiveObjectsProcessAltFire")]
 			static bool PlayerManager_InteractiveObjectsProcessAltFire_Prefix(PlayerManager __instance) =>
 				!tryEnterPlaceMode(__instance.m_InteractiveObjectUnderCrosshair);
-
-			[HarmonyPostfix, HarmonyPatch(typeof(PlayerManager), "DoPositionCheck")]
-			static void PlayerManager_DoPositionCheck_Postfix(PlayerManager __instance)
-			{
-				if (placingContainer)
-					__instance.m_ObjectToPlace.transform.rotation = rotation;
-			}
 		}
 	}
 }

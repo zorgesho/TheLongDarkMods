@@ -11,7 +11,16 @@ namespace SaveAnywhere
 
 		internal static readonly ModConfig config = Config.tryLoad<ModConfig>();
 
-		internal static SaveSlotType gameType => GameManager.GetExperienceModeManagerComponent().IsChallengeActive()? SaveSlotType.CHALLENGE: SaveSlotType.SANDBOX;
+		internal static SaveSlotType gameType
+		{
+			get
+			{
+				if (GameManager.IsStoryMode())
+					return SaveSlotType.STORY;
+
+				return GameManager.GetExperienceModeManagerComponent().IsChallengeActive()? SaveSlotType.CHALLENGE: SaveSlotType.SANDBOX;
+			}
+		}
 
 		protected override void init() => SaveGameSlots.MAX_SAVESLOTS = config.maxSaveSlots;
 

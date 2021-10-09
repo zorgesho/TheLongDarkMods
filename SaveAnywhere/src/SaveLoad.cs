@@ -6,7 +6,6 @@ using HarmonyLib;
 using UnityEngine;
 
 using Common;
-using Common.Reflection;
 using Common.Configuration;
 
 namespace SaveAnywhere
@@ -32,14 +31,6 @@ namespace SaveAnywhere
 		public static  bool isOriginalSlot(string slot) =>
 			slotsConfig.originalSlots.Any(link => link.Value == slot) || !slotsConfig.originalSlots.Any(link => link.Key == slot);
 
-		public static void updateSlots(SaveSlotType type)
-		{
-			if (type == SaveSlotType.CHALLENGE)
-				Il2CppHelper.setFieldValue(InterfaceManager.m_Panel_MainMenu, "m_ChallengeSaveSlots", SaveGameSystem.GetSortedSaveSlots(Episode.One, SaveSlotType.CHALLENGE));
-			else if (type == SaveSlotType.SANDBOX)
-				Il2CppHelper.setFieldValue(InterfaceManager.m_Panel_MainMenu, "m_SandboxSlots", SaveGameSystem.GetSortedSaveSlots(Episode.One, SaveSlotType.SANDBOX));
-		}
-
 		static bool setCurrentSlot(string slot)
 		{
 			if (!SaveGameSlots.HasSaveSlot(slot))
@@ -54,9 +45,7 @@ namespace SaveAnywhere
 
 		static int getSlotIndex(string slot)
 		{
-			var mainmenu = InterfaceManager.m_Panel_MainMenu;
-			var slots = SaveGameSlots.GetSaveSlotTypeFromName(slot) == SaveSlotType.CHALLENGE? mainmenu.m_ChallengeSaveSlots: mainmenu.m_SandboxSlots;
-
+			var slots = SaveGameSlotHelper.GetSaveSlotInfoList(SaveGameSlots.GetSaveSlotTypeFromName(slot));
 			return slots.findIndex(slotInfo => slotInfo.m_SaveSlotName == slot);
 		}
 
@@ -132,21 +121,14 @@ namespace SaveAnywhere
 			if (GameUtils.isMainMenu())
 				return;
 
-			updateSlots(Main.gameType);
+			SaveGameSlotHelper.RefreshSaveSlots(Main.gameType);
 
 			int slotIndex = getSlotIndex(getQuicksaveSlot(Main.gameType));
 
 			if (slotIndex == -1)
 				return;
 
-			Action action = new(() =>
-			{
-				if (Main.gameType == SaveSlotType.CHALLENGE)
-					InterfaceManager.m_Panel_MainMenu.OnLoadChallengeMode(slotIndex);
-				else
-					InterfaceManager.m_Panel_MainMenu.OnLoadSandboxMode(slotIndex);
-			});
-
+			Action action = new (() => InterfaceManager.GetPanel<Panel_MainMenu>().OnLoadSaveSlot(Main.gameType, slotIndex));
 			CameraFade.StartAlphaFade(Color.black, false, GameManager.m_SceneTransitionFadeOutTime, 0f, action);
 		}
 
@@ -196,7 +178,7 @@ namespace SaveAnywhere
 				}
 
 				linksToRemove.ForEach(removeSlotInfo);
-				updateSlots(SaveGameSlots.GetSaveSlotTypeFromName(slotData.m_Name));
+				SaveGameSlotHelper.RefreshSaveSlots(SaveGameSlots.GetSaveSlotTypeFromName(slotData.m_Name));
 			}
 		}
 	}

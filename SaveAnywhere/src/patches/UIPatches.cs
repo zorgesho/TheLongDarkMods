@@ -40,36 +40,29 @@ namespace SaveAnywhere
 			return false;
 		}
 
-		[HarmonyPrefix]
-		[HarmonyPatch(typeof(Panel_MainMenu), "OnLoadSandboxMode")]
-		[HarmonyPatch(typeof(Panel_MainMenu), "OnLoadChallengeMode")]
-		static void PanelMainMenu_OnLoadMode_Prefix()
+		[HarmonyPrefix, HarmonyPatch(typeof(Panel_MainMenu), "OnLoadSaveSlot")]
+		static void PanelMainMenu_OnLoadSaveSlot_Prefix(SaveSlotType saveSlotType)
 		{
 			if (GameUtils.isMainMenu())
 				return;
 
+			if (saveSlotType is not (SaveSlotType.CHALLENGE or SaveSlotType.SANDBOX))
+				return;
+
 			if (GameManager.m_PlayerObject)
-			{																								"Destroying player object".logDbg();
+			{																										"Destroying player object".logDbg();
 				Object.DestroyImmediate(GameManager.m_PlayerObject);
 			}
 
 			InterfaceManager.m_Panel_PauseMenu.DoQuitGame();
 		}
 
-		[HarmonyPostfix, HarmonyPatch(typeof(Panel_MainMenu), "OnLoadSandboxMode")]
-		static void PanelMainMenu_OnLoadSandboxMode_Postfix(Panel_MainMenu __instance, int slotIndex)
-		{
-			string slotName = __instance.m_SandboxSlots[slotIndex].m_SaveSlotName;							$"Panel_MainMenu.OnLoadSandboxMode slotIndex: {slotIndex} {slotName}".logDbg();
+		[HarmonyPostfix, HarmonyPatch(typeof(Panel_MainMenu), "OnLoadSaveSlot")]
+		static void PanelMainMenu_OnLoadSaveSlot_Postfix(SaveSlotType saveSlotType, int slotIndex)
+		{																											$"Panel_MainMenu.OnLoadSaveSlot slotType: {saveSlotType} slotIndex: {slotIndex}".logDbg();
+			string slotName = SaveGameSlotHelper.GetSaveSlotInfo(saveSlotType, slotIndex).m_SaveSlotName;			$"Panel_MainMenu.OnLoadSaveSlot slotName: {slotName}".logDbg();
 			SaveLoad.tryRestoreOriginalSlot(slotName);
 		}
-
-		[HarmonyPostfix, HarmonyPatch(typeof(Panel_MainMenu), "OnLoadChallengeMode")]
-		static void PanelMainMenu_OnLoadChallengeMode_Postfix(Panel_MainMenu __instance, int slotIndex)
-		{
-			string slotName = __instance.m_ChallengeSaveSlots[slotIndex].m_SaveSlotName;					$"Panel_MainMenu.OnLoadChallengeMode slotIndex: {slotIndex} {slotName}".logDbg();
-			SaveLoad.tryRestoreOriginalSlot(slotName);
-		}
-
 
 		[HarmonyPrefix]
 		[HarmonyPatch(typeof(Panel_ChooseSandbox), "DeleteSaveSlot")]
@@ -81,14 +74,14 @@ namespace SaveAnywhere
 
 		// creating UI object for original slot info
 		[HarmonyPostfix]
-		[HarmonyPatch(typeof(Panel_ChooseSandbox), "Awake")]
-		[HarmonyPatch(typeof(Panel_ChooseChallenge), "Awake")]
-		static void PanelChoose_Awake_Postfix(Panel_Base __instance)
+		[HarmonyPatch(typeof(Panel_ChooseSandbox), "Initialize")]
+		[HarmonyPatch(typeof(Panel_ChooseChallenge), "Initialize")]
+		static void PanelChoose_Initialize_Postfix(Panel_Base __instance)
 		{
 			var details = __instance.getDetails().m_Details;
 			var prefab = details.getChild("Texts/Date");
 
-			var originalSlot = details.getChild("Texts").createChild(prefab, "OriginalSlot", pos: new Vector3(460f, prefab.transform.position.y, 0f));
+			var originalSlot = details.getChild("Texts").createChild(prefab, "OriginalSlot", pos: prefab.transform.position + new Vector3(0.45f, 0f, 0f));
 			originalSlot.getChild("DateValue").name = "SlotValue";
 		}
 
@@ -188,12 +181,12 @@ namespace SaveAnywhere
 				backToPauseMenu = true;
 				InterfaceManager.m_Panel_PauseMenu.Enable(false);
 
-				SaveLoad.updateSlots(Main.gameType);
+				SaveGameSlotHelper.RefreshSaveSlots(Main.gameType);
 
 				if (Main.gameType == SaveSlotType.SANDBOX)
-					InterfaceManager.m_Panel_Sandbox.OnClickLoad();
+					InterfaceManager.GetPanel<Panel_Sandbox>().OnClickLoad();
 				else
-					InterfaceManager.m_Panel_Challenges.OnClickLoad();
+					InterfaceManager.GetPanel<Panel_Challenges>().OnClickLoad();
 			});
 
 			Color defaultColor = new (0f, 0f, 0f, 0f);

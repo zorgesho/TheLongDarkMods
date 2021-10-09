@@ -87,7 +87,7 @@ namespace MovableContainers
 		[HarmonyPatch]
 		static class Patches
 		{
-			[HarmonyPostfix, HarmonyPatch(typeof(Panel_HUD), "Awake")]
+			[HarmonyPostfix, HarmonyPatch(typeof(Panel_HUD), "Initialize")]
 			static void PanelHUD_Awake_Postfix(Panel_HUD __instance) => init(__instance.gameObject);
 
 			[HarmonyPostfix, HarmonyPatch(typeof(Encumber), "GetPlayerCarryCapacityString")]
@@ -95,9 +95,9 @@ namespace MovableContainers
 
 			[HarmonyPostfix] // :(
 			[HarmonyPatch(typeof(Panel_Log), "Enable")]
-			[HarmonyPatch(typeof(Panel_Map), "Enable")]
-			[HarmonyPatch(typeof(Panel_Crafting), "Enable")]
-			[HarmonyPatch(typeof(Panel_Inventory), "Enable")]
+			[HarmonyPatch(typeof(Panel_Map), "Enable", typeof(bool), typeof(bool))]
+			[HarmonyPatch(typeof(Panel_Crafting), "Enable", typeof(bool), typeof(bool))]
+			[HarmonyPatch(typeof(Panel_Inventory), "Enable", typeof(bool), typeof(bool))]
 			static void Panel_Enable_Postfix(bool enable) => containerIcon?.SetActive(containerIconVisible && !enable);
 
 			[HarmonyPostfix, HarmonyPatch(typeof(Panel_ActionsRadial), "ShowPlaceItemRadial")]

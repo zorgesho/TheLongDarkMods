@@ -78,7 +78,7 @@ namespace SaveAnywhere
 			$"GameManager.LoadGame".logDbg();
 		}
 
-		[HarmonyPrefix, HarmonyPatch(typeof(GameManager), "LoadSaveGameSlot")]
+		[HarmonyPrefix, HarmonyPatch(typeof(GameManager), "LoadSaveGameSlot", typeof(string), typeof(int))]
 		static void GameManager_LoadSaveGameSlot_Prefix(string slotName)
 		{
 			if (dumpSaveSlotOnLoad)

@@ -106,7 +106,7 @@ namespace MiscTweaks
 
 		static bool controlPressed => Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
 
-		[HarmonyPostfix, HarmonyPatch(typeof(Panel_Rest), "Enable")]
+		[HarmonyPostfix, HarmonyPatch(typeof(Panel_Rest), "Enable", typeof(bool), typeof(bool))]
 		static void PanelRest_Enable_Postfix(Panel_Rest __instance, bool enable)
 		{
 			if (!enable)

@@ -11,7 +11,7 @@ namespace SaveAnywhere
 
 		[HarmonyPrefix]
 		[HarmonyPatch(typeof(Condition), "PlayerDeath")]
-		[HarmonyPatch(typeof(Panel_ChallengeComplete), "Enable")]
+		[HarmonyPatch(typeof(Panel_ChallengeComplete), "ShowPanel")]
 		static void disableSlotDeletingPatch()
 		{
 			if (!GameManager.IsStoryMode())

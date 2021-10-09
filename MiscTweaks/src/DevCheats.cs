@@ -16,6 +16,8 @@ namespace MiscTweaks
 				litFire(fire);
 			else if (go.GetComponentInChildren<IceFishingHole>() is IceFishingHole iceFishingHole)
 				clearFishingHole(iceFishingHole);
+			else if (go.GetComponentInChildren<Keypad>() is Keypad keypad)
+				addKeypadCode(keypad);
 		}
 
 		static void crackSafe(SafeCracking safeCracking)
@@ -42,6 +44,11 @@ namespace MiscTweaks
 
 			if (!GameUtils.Inventory.GetBestFishingTackle())
 				GameUtils.addItem("gear_hookandline");
+		}
+
+		static void addKeypadCode(Keypad keypad)
+		{
+			GameUtils.PlayerManager.m_KnownCodes.Add(keypad.m_Code);
 		}
 	}
 }

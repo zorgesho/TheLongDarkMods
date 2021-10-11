@@ -36,6 +36,7 @@
     <Compile Include="src\patches\UIPatches.cs" />
     <Compile Include="src\SaveLoad.cs" />
     <Compile Include="src\SaveNamed.cs" />
+    <Compile Include="src\SaveSlotDumper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.md" />

@@ -3,7 +3,6 @@ using System.Diagnostics;
 
 using HarmonyLib;
 using UnityEngine;
-using Newtonsoft.Json;
 
 using Common;
 
@@ -14,19 +13,6 @@ namespace SaveAnywhere
 	{
 		static readonly bool dumpSaveSlotOnLoad = false;
 		static readonly bool printTimerDetails = false;
-
-		static void dumpSaveSlot(string slotName)
-		{
-			if (SaveGameSlots.GetSaveSlotFromName(slotName) is not SlotData slotData)
-				return;
-
-			foreach (var key in slotData.m_Dict.Keys)
-			{
-				string slotStr = SaveGameSlots.LoadDataFromSlot(slotName, key);
-				string slotStrFormatted = JsonConvert.SerializeObject(JsonConvert.DeserializeObject(slotStr), new JsonSerializerSettings() { Formatting = Formatting.Indented });
-				slotStrFormatted.saveToFile($"{PersistentDataPath.m_Path}\\saves-dump\\{slotName}-{key}.json");
-			}
-		}
 
 		[HarmonyPostfix, HarmonyPatch(typeof(MissionServicesManager), "Serialize")]
 		static void MissionServicesManager_Serialize_Postfix(MissionServicesManager __instance)
@@ -82,7 +68,7 @@ namespace SaveAnywhere
 		static void GameManager_LoadSaveGameSlot_Prefix(string slotName)
 		{
 			if (dumpSaveSlotOnLoad)
-				dumpSaveSlot(slotName);
+				SaveSlotDumper.dump(slotName);
 		}
 
 		[HarmonyPatch(typeof(SaveGameSlots), "CreateSaveSlotInfo")]

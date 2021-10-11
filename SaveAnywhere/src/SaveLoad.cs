@@ -150,6 +150,17 @@ namespace SaveAnywhere
 				}
 			}
 
+			// fix for NREs during loading
+			[HarmonyPrefix, HarmonyPatch(typeof(GameManager), "GetPlayerObject")]
+			static bool GameManager_GetPlayerObject_Prefix(ref GameObject __result)
+			{
+				if (GameManager.m_vpFPSPlayer)
+					return true;
+
+				__result = null;
+				return false;
+			}
+
 			[HarmonyPostfix, HarmonyPatch(typeof(GameManager), "ForceSaveGame")]
 			static void GameManager_ForceSaveGame_Postfix()
 			{

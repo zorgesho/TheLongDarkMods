@@ -22,6 +22,19 @@ namespace MiscTweaks
 	}
 
 
+	[HarmonyPatch]
+	static class RunInBackground
+	{
+		static bool Prepare() => Main.config.runInBackground;
+
+		[HarmonyPostfix, HarmonyPatch(typeof(GameManager), "Awake")]
+		static void GameManager_Awake_Postfix() => Application.runInBackground = Main.config.runInBackground;
+
+		[HarmonyPrefix, HarmonyPatch(typeof(GameManager), "OnApplicationFocus")]
+		static bool GameManager_OnApplicationFocus_Prefix() => !Main.config.runInBackground;
+	}
+
+
 	// weightless quest items
 	[HarmonyPatch(typeof(GearItem), "GetItemWeightKG")]
 	static class GearItem_GetItemWeightKG_Patch

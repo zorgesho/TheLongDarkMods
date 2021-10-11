@@ -24,5 +24,7 @@ namespace MiscTweaks
 		public readonly float slowerCoolDown = 0.01f; // 1.0f for default
 
 		public readonly bool dbgShowMissedItemsForEmptyContainers = true;
+
+		public readonly bool runInBackground = true;
 	}
 }

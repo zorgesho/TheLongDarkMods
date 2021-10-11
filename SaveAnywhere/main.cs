@@ -14,7 +14,7 @@ namespace SaveAnywhere
 		internal static SaveSlotType gameType
 		{
 			get
-			{
+			{																					$"Main.gameType: {ExperienceModeManager.s_CurrentModeType}".logDbg();
 				if (GameManager.IsStoryMode())
 					return SaveSlotType.STORY;
 

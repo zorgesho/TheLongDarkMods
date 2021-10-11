@@ -19,9 +19,9 @@ namespace SaveAnywhere
 		[HarmonyPostfix]
 		[HarmonyPatch(typeof(Panel_ChooseSandbox), "Enable")]
 		[HarmonyPatch(typeof(Panel_ChooseChallenge), "Enable")]
-		static void PanelChoose_Enable_Postfix(bool enabled)
+		static void PanelChoose_Enable_Postfix(bool enable)
 		{
-			if (!enabled)
+			if (!enable)
 				backToPauseMenu = false;
 		}
 

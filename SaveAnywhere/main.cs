@@ -7,7 +7,7 @@ namespace SaveAnywhere
 {
 	public class Main: Mod
 	{
-		internal const string version = "1.2.0";
+		internal const string version = "1.2.1";
 
 		internal static readonly ModConfig config = Config.tryLoad<ModConfig>();
 

@@ -21,6 +21,7 @@ namespace MiscTweaks
 		public readonly bool addRevolverCasingsToInventory = true;
 		public readonly float revolverFiringRate = 0.25f; // vanilla 0.5f
 
+		public readonly bool allowIndoorFires = true;
 		public readonly float slowerCoolDown = 0.01f; // 1.0f for default
 
 		public readonly bool dbgShowMissedItemsForEmptyContainers = true;

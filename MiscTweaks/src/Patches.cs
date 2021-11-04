@@ -218,4 +218,18 @@ namespace MiscTweaks
 				__instance.m_TempIncrease = prevTemp - (prevTemp - __instance.m_TempIncrease) * Main.config.slowerCoolDown;
 		}
 	}
+
+
+	// can start fire indoors
+	[HarmonyPatch]
+	static class IndoorFires
+	{
+		static bool Prepare() => Main.config.allowIndoorFires;
+
+		[HarmonyPrefix, HarmonyPatch(typeof(InputManager), "CanStartFireIndoors")]
+		static bool InputManager_CanStartFireIndoors_Prefix(ref bool __result) => !(__result = true);
+
+		[HarmonyPrefix, HarmonyPatch(typeof(IndoorSpaceTrigger), "OnTriggerEnter")]
+		static void IndoorSpaceTrigger_OnTriggerEnter_Prefix(IndoorSpaceTrigger __instance) => __instance.m_AllowCampfires = true;
+	}
 }

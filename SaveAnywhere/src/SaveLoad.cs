@@ -177,19 +177,12 @@ namespace SaveAnywhere
 				if (!Main.config.removeCustomSavesWithOriginal)
 					return;
 																																		$"Trying to delete linked slots".logDbg();
-				List<string> linksToRemove = new();
-
-				foreach (var link in slotsConfig.originalSlots)
-				{
-					if (link.Value == slotData.m_Name)
-					{
-						linksToRemove.Add(link.Key);
-						SaveGameSlots.DeleteSlot(link.Key);
-					}
-				}
-
+				var linksToRemove = slotsConfig.originalSlots.Where(link => link.Value == slotData.m_Name).Select(link => link.Key).ToList();
+				linksToRemove.ForEach(slot => SaveGameSlots.DeleteSlot(slot));
 				linksToRemove.ForEach(removeSlotInfo);
-				SaveGameSlotHelper.RefreshSaveSlots(SaveGameSlots.GetSaveSlotTypeFromName(slotData.m_Name));
+
+				if (linksToRemove.Count > 0)
+					SaveGameSlotHelper.RefreshSaveSlots(SaveGameSlots.GetSaveSlotTypeFromName(slotData.m_Name));
 			}
 		}
 	}

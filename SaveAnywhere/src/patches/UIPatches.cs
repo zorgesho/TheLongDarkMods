@@ -15,6 +15,10 @@ namespace SaveAnywhere
 	static class UIPatches
 	{
 		static bool backToPauseMenu = false;
+		static bool preventClearingSaveSlotsLists = false;
+
+		[HarmonyPrefix, HarmonyPatch(typeof(SaveGameSlotHelper), "ClearSaveSlotsLists")]
+		static bool SaveGameSlotHelper_ClearSaveSlotsLists_Prefix() => !preventClearingSaveSlotsLists;
 
 		[HarmonyPostfix]
 		[HarmonyPatch(typeof(Panel_ChooseSandbox), "Enable")]
@@ -24,7 +28,6 @@ namespace SaveAnywhere
 			if (!enable)
 				backToPauseMenu = false;
 		}
-
 
 		[HarmonyPrefix]
 		[HarmonyPatch(typeof(Panel_ChooseSandbox), "OnClickBack")]
@@ -50,6 +53,8 @@ namespace SaveAnywhere
 			if (saveSlotType is not (SaveSlotType.CHALLENGE or SaveSlotType.SANDBOX))
 				return;
 
+			preventClearingSaveSlotsLists = true;
+
 			if (GameManager.m_PlayerObject)
 			{																										"Destroying player object".logDbg();
 				Object.DestroyImmediate(GameManager.m_PlayerObject);
@@ -61,8 +66,11 @@ namespace SaveAnywhere
 		[HarmonyPostfix, HarmonyPatch(typeof(Panel_MainMenu), "OnLoadSaveSlot")]
 		static void PanelMainMenu_OnLoadSaveSlot_Postfix(SaveSlotType saveSlotType, int slotIndex)
 		{																											$"Panel_MainMenu.OnLoadSaveSlot slotType: {saveSlotType} slotIndex: {slotIndex}".logDbg();
+			SaveGameSlotHelper.RefreshSaveSlots(saveSlotType);
 			string slotName = SaveGameSlotHelper.GetSaveSlotInfo(saveSlotType, slotIndex).m_SaveSlotName;			$"Panel_MainMenu.OnLoadSaveSlot slotName: {slotName}".logDbg();
 			SaveLoad.tryRestoreOriginalSlot(slotName);
+
+			preventClearingSaveSlotsLists = false;
 		}
 
 		[HarmonyPrefix]

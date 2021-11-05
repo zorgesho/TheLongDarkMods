@@ -23,6 +23,7 @@ namespace ExtraHotkeys
 			new ("FlareGun",	"Equip Distress Pistol",	() => use(inv?.GetBestFlareGun())),
 			new ("Rifle",		"Equip Hunting Rifle",		() => use(inv?.GetBestRifle())),
 			new ("Bow",			"Equip Survival Bow",		() => use(inv?.GetBestBow())),
+			new ("Noisemaker",	"Equip Noisemaker",			() => use(inv?.GetBestNoiseMakerItem())),
 			new ("Stone",		"Equip Stone",				() => use(inv?.GetBestStone())),
 
 			// light sources
@@ -39,7 +40,7 @@ namespace ExtraHotkeys
 
 			// extra actions
 			new ("Stim",		"Equip Emergency Stim",		() => use(inv?.GetNonRuinedItem("GEAR_EmergencyStim"))),
-			new ("SprayCan",	"Equip Spray Paint",		() => use(inv?.GetNonRuinedItem("GEAR_SprayPaintCan")))
+			//new ("SprayCan",	"Equip Spray Paint",		() => use(inv?.GetNonRuinedItem("GEAR_SprayPaintCan")))
 		};
 	}
 }

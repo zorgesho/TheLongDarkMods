@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using UnityEngine;
+using Common;
 
 namespace PlaceFromInventory
 {
@@ -9,10 +10,15 @@ namespace PlaceFromInventory
 	{
 		static GearItem clothItemPlaceAfterDrop;
 
+		const int delayAfterCancel = 10; // delay in frames after cancelling placement (to avoid right misclicks)
+		static int lastFrameCancelled = 0; // last frame when placement was cancelled
+
+		static bool shouldSkipClick => Time.frameCount - lastFrameCancelled < delayAfterCancel;
+
 		[HarmonyPostfix, HarmonyPatch(typeof(InventoryGridItem), "OnClick")]
 		static void InventoryGridItem_OnClick_Postfix(InventoryGridItem __instance)
-		{
-			if (!Input.GetMouseButtonUp(1) || InterfaceManager.m_Panel_Container.IsEnabled())
+		{																															$"InventoryGridItem.OnClick: shouldSkip = {shouldSkipClick}".logDbg();
+			if (shouldSkipClick || !Input.GetMouseButtonUp(1) || InterfaceManager.m_Panel_Container.IsEnabled())
 				return;
 
 			if (!UIHelper.invPanel.m_ItemDescriptionPage.CanDrop(__instance.m_GearItem) || __instance.m_GearItem.m_WaterSupply)
@@ -24,8 +30,8 @@ namespace PlaceFromInventory
 
 		[HarmonyPostfix, HarmonyPatch(typeof(ClothingSlot), "DoClickAction")]
 		static void ClothingSlot_DoClickAction_Postfix(ClothingSlot __instance)
-		{
-			if (!Input.GetMouseButtonUp(1) || !__instance.m_GearItem)
+		{																															$"ClothingSlot.DoClickAction: shouldSkip = {shouldSkipClick}".logDbg();
+			if (shouldSkipClick || !Input.GetMouseButtonUp(1) || !__instance.m_GearItem)
 				return;
 
 			if (!UIHelper.clothPanel.m_ItemDescriptionPage.CanDrop(__instance.m_GearItem))
@@ -46,8 +52,11 @@ namespace PlaceFromInventory
 		}
 
 		[HarmonyPostfix, HarmonyPatch(typeof(PlayerManager), "ExitMeshPlacement")]
-		static void PlayerManager_ExitMeshPlacement_Postfix()
-		{
+		static void PlayerManager_ExitMeshPlacement_Postfix(PlayerManager __instance)
+		{																															$"PlayerManager.ExitMeshPlacement: cancelled = {!__instance.m_SkipCancel}".logDbg();
+			if (!__instance.m_SkipCancel)
+				lastFrameCancelled = Time.frameCount;
+
 			UIHelper.restorePreviousPanel();
 		}
 

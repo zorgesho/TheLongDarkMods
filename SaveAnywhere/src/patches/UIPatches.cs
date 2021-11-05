@@ -66,7 +66,7 @@ namespace SaveAnywhere
 		[HarmonyPostfix, HarmonyPatch(typeof(Panel_MainMenu), "OnLoadSaveSlot")]
 		static void PanelMainMenu_OnLoadSaveSlot_Postfix(SaveSlotType saveSlotType, int slotIndex)
 		{																											$"Panel_MainMenu.OnLoadSaveSlot slotType: {saveSlotType} slotIndex: {slotIndex}".logDbg();
-			SaveGameSlotHelper.RefreshSaveSlots(saveSlotType);
+			SaveGameSlotHelper.RefreshSaveSlots(saveSlotType, true);
 			string slotName = SaveGameSlotHelper.GetSaveSlotInfo(saveSlotType, slotIndex).m_SaveSlotName;			$"Panel_MainMenu.OnLoadSaveSlot slotName: {slotName}".logDbg();
 			SaveLoad.tryRestoreOriginalSlot(slotName);
 
@@ -190,7 +190,7 @@ namespace SaveAnywhere
 				backToPauseMenu = true;
 				InterfaceManager.m_Panel_PauseMenu.Enable(false);
 
-				SaveGameSlotHelper.RefreshSaveSlots(Main.gameType);
+				SaveGameSlotHelper.RefreshSaveSlots(Main.gameType, true);
 
 				if (Main.gameType == SaveSlotType.SANDBOX)
 					InterfaceManager.GetPanel<Panel_Sandbox>().OnClickLoad();

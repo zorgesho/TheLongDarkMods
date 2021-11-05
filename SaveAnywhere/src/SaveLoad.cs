@@ -121,7 +121,7 @@ namespace SaveAnywhere
 			if (GameUtils.isMainMenu())
 				return;
 
-			SaveGameSlotHelper.RefreshSaveSlots(Main.gameType);
+			SaveGameSlotHelper.RefreshSaveSlots(Main.gameType, true);
 
 			int slotIndex = getSlotIndex(getQuicksaveSlot(Main.gameType));
 
@@ -182,7 +182,7 @@ namespace SaveAnywhere
 				linksToRemove.ForEach(removeSlotInfo);
 
 				if (linksToRemove.Count > 0)
-					SaveGameSlotHelper.RefreshSaveSlots(SaveGameSlots.GetSaveSlotTypeFromName(slotData.m_Name));
+					SaveGameSlotHelper.RefreshSaveSlots(SaveGameSlots.GetSaveSlotTypeFromName(slotData.m_Name), true);
 			}
 		}
 	}

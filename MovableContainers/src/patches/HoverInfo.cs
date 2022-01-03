@@ -30,8 +30,6 @@ namespace MovableContainers
 
 		static void Postfix(Container __instance, ref string __result)
 		{
-			using var _ = Debug.profiler("Container.GetInteractiveDisplayText");
-
 			if (!__instance.m_Inspected)
 				return;
 

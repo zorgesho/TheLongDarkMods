@@ -71,11 +71,11 @@ namespace MovableContainers
 		static bool isLargeLocation() => Main.config.largeLocations.Any(name => GameManager.m_ActiveScene == name);
 
 		static void initContainersInfo(MovedContainersInfo info)
-		{																									$"MovableContainerManager.initContainersInfo".logDbg();
+		{																									$"MovableContainerManager.initContainersInfo: info is {(info == null? "": "not ")}null".logDbg();
 			Common.Debug.assert(containersRoot == null);
 			containersRoot = new GameObject("MovableContainersRoot");
 
-			MovableContainerManager.info = info ?? new MovedContainersInfo();								$"Containers info - moved: {info.movedContainers.Count}, hidden: {info.hiddenContainers.Count}, new: {info.newContainers.Count}".logDbg();
+			MovableContainerManager.info = info ?? new MovedContainersInfo();								$"Containers info - moved: {info?.movedContainers.Count ?? 0}, hidden: {info?.hiddenContainers.Count ?? 0}, new: {info?.newContainers.Count ?? 0}".logDbg();
 		}
 
 		static void initContainer(Container container)

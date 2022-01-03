@@ -24,6 +24,9 @@ namespace MovableContainers
 			{																																	$"SaveGameSystem.SaveGlobalData {name}".logDbg();
 				string text = JsonConvert.SerializeObject(new GlobalSaveData() { pickedContainerType = pickedContainerType });
 				SaveGameSlots.SaveDataToSlot(gameMode, SaveGameSystem.m_CurrentEpisode, SaveGameSystem.m_CurrentGameId, name, savename, text);
+
+				if (info == null) // in case of a new world we need to init info here
+					initContainersInfo(null);
 			}
 
 			[HarmonyPrefix, HarmonyPatch(typeof(SaveGameSystem), "RestoreGlobalData")]

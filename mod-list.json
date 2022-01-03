@@ -46,14 +46,14 @@
       "name": "MovableContainers",
       "author": "zorgesho",
       "authorURL": "https://github.com/zorgesho",
-      "version": "1.2.0",
-      "updated": "2021-10-11",
+      "version": "1.2.1",
+      "updated": "2022-01-03",
       "description": "This mod allows to move some types of containers (inside one location and between locations)",
       "modURL": "https://github.com/zorgesho/TheLongDarkMods/tree/master/MovableContainers",
-      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/MC-v1.2.0/MovableContainers.zip",
+      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/MC-v1.2.1/MovableContainers.zip",
       "testedon": {
         "tldversion": "1.97",
-        "mlversion": "0.4.0"
+        "mlversion": "0.4.3"
       },
       "dependencies": [],
       "status": {

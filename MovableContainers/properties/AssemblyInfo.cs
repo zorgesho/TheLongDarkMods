@@ -5,7 +5,7 @@ using MelonLoader;
 
 [assembly: AssemblyTitle("MovableContainers")]
 [assembly: AssemblyProduct("MovableContainers")]
-[assembly: AssemblyCopyright("© 2021 zorgesho")]
+[assembly: AssemblyCopyright("© 2021-2022 zorgesho")]
 
 [assembly: ComVisible(false)]
 

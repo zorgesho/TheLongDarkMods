@@ -9,8 +9,8 @@
       "version": "1.0.0",
       "updated": "2021-07-03",
       "description": "This mod allows to cook the catched fish automatically without interruption of the fishing",
-      "modURL": "https://github.com/zorgesho/TheLongDarkMods/tree/master/CookWhileFishing",
-      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/CWF-v1.0.0/CookWhileFishing.zip",
+      "modURL": "https://www.nexusmods.com/thelongdark/mods/12",
+      "downloadURL": "https://www.nexusmods.com/thelongdark/mods/12?tab=files",
       "testedon": {
         "tldversion": "1.97",
         "mlversion": "0.4.0"
@@ -29,8 +29,8 @@
       "version": "1.2.0",
       "updated": "2021-11-05",
       "description": "This mod adds additional hotkeys for equipping gear items",
-      "modURL": "https://github.com/zorgesho/TheLongDarkMods/tree/master/ExtraHotkeys",
-      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/EH-v1.2.0/ExtraHotkeys.zip",
+      "modURL": "https://www.nexusmods.com/thelongdark/mods/11",
+      "downloadURL": "https://www.nexusmods.com/thelongdark/mods/11?tab=files",
       "testedon": {
         "tldversion": "1.97",
         "mlversion": "0.4.3"
@@ -49,8 +49,8 @@
       "version": "1.2.1",
       "updated": "2022-01-03",
       "description": "This mod allows to move some types of containers (inside one location and between locations)",
-      "modURL": "https://github.com/zorgesho/TheLongDarkMods/tree/master/MovableContainers",
-      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/MC-v1.2.1/MovableContainers.zip",
+      "modURL": "https://www.nexusmods.com/thelongdark/mods/9",
+      "downloadURL": "https://www.nexusmods.com/thelongdark/mods/9?tab=files",
       "testedon": {
         "tldversion": "1.97",
         "mlversion": "0.4.3"
@@ -69,8 +69,8 @@
       "version": "1.1.1",
       "updated": "2021-11-05",
       "description": "This mod allows to place items right from the inventory screen with a right mouse click. Also, it places any stackable items as one item (as stack).",
-      "modURL": "https://github.com/zorgesho/TheLongDarkMods/tree/master/PlaceFromInventory",
-      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/PFI-v1.1.1/PlaceFromInventory.zip",
+      "modURL": "https://www.nexusmods.com/thelongdark/mods/10",
+      "downloadURL": "https://www.nexusmods.com/thelongdark/mods/10?tab=files",
       "testedon": {
         "tldversion": "1.97",
         "mlversion": "0.4.3"
@@ -89,8 +89,8 @@
       "version": "1.3.0",
       "updated": "2021-11-05",
       "description": "This mod allows to save and load anywhere in the survival mode like in the story mode. Also, it can disable permadeath.",
-      "modURL": "https://github.com/zorgesho/TheLongDarkMods/tree/master/SaveAnywhere",
-      "downloadURL": "https://github.com/zorgesho/TheLongDarkMods/releases/download/SA-v1.3.0/SaveAnywhere.zip",
+      "modURL": "https://www.nexusmods.com/thelongdark/mods/8",
+      "downloadURL": "https://www.nexusmods.com/thelongdark/mods/8?tab=files",
       "testedon": {
         "tldversion": "1.97",
         "mlversion": "0.4.3"
